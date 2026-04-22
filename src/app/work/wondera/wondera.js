@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { dsFonts, dsLayout, dsSpacing, dsType } from "@/lib/designSystem";
+import { WonderaSolutionFlowScroll } from "./WonderaSolutionFlowScroll";
 
 function PlaceholderFigure({
   label,
@@ -350,14 +351,74 @@ export default function WonderaCaseStudy() {
 
         <section className="my-6 text-white">
           <div className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 bg-[#32167A] py-16 min-[720px]:py-20 min-[1024px]:py-24">
-            <div className="mx-auto max-w-5xl px-6">
+            <div className={`${dsLayout.pageFrame}`}>
               <p
-                className={`${dsFonts.display.className} mx-auto max-w-4xl text-center text-[1.75rem] font-semibold leading-[1.4] tracking-tight min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem]`}
+                className={`${dsFonts.display.className} max-w-4xl text-left text-[1.75rem] font-semibold leading-[1.4] tracking-tight min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem]`}
               >
                 How Might We enhance <span className="font-extrabold">engagement</span> and{" "}
                 <span className="font-extrabold">ease of management</span> for AI voice training
                 within our product?
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className={dsSpacing.sectionInner}>
+          <div className="space-y-10">
+            <div>
+              <p
+                className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}
+              >
+                Design for engagement
+              </p>
+              <h2
+                className={`${dsFonts.display.className} mt-3 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
+              >
+                Boosting{" "}
+                <span className="text-violet-300">Engagement</span> with Integrated Training
+                Flow, and a Progress Map Layout
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <p className={`${dsType.subtitle} text-zinc-100`}>Product direction</p>
+              </div>
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <div className={`${dsType.body} space-y-5 text-zinc-200`}>
+                  <p>
+                    Wondera began as a social karaoke experience; the product direction shifted
+                    toward AI voice training as a core value. The design response was to treat
+                    singing and training as one continuous journey instead of two disconnected
+                    surfaces—so users stay motivated from first song through model completion.
+                  </p>
+                  <p>
+                    That meant tightening navigation between discovery, recording, and progress,
+                    and surfacing training status where people already spend time, rather than
+                    hiding it behind profile-only entry points.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <p className={`${dsType.subtitle} text-zinc-100`}>Solution</p>
+              </div>
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <div className={`${dsType.body} space-y-8 text-zinc-200`}>
+                  <p>
+                    We integrated the training flow with the main singing loop: users can see how
+                    recordings feed the model, jump between practice and training tasks, and return
+                    to the map without losing context. The flow strip below compares the previous
+                    fragmented journey with the unified one we shipped.
+                  </p>
+
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 min-[1024px]:p-8">
+                    <WonderaSolutionFlowScroll />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

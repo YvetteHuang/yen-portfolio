@@ -1,64 +1,82 @@
-import Image from "next/image";
+import ProjectCard from "@/components/ProjectCard";
+
+
+const projects = [
+  {
+    title: "SotckNews.ai",
+    subtitle: "UX Design",
+    description:
+      "Courses Enrollment System Redesign for efficient and intuitive use.",
+    gradientClassName: "bg-[linear-gradient(to_bottom_right,#87AEF6_0%,#5494DD_36%,#4271AA_62%,#1E2A43_100%)]",
+    imageSrc: "/homepage_stocknews.svg",
+    imageAlt: "SotckNews.ai product screens mockup",
+    imageRight: true,
+    href: "#",
+  },
+  {
+    title: "Wondera",
+    subtitle: "Product Design @Future Effects Studio",
+    description:
+      "A personal AI training app enables people to train their own unique AI voice.",
+    gradientClassName: "bg-[linear-gradient(to_bottom_left,#B693FF_0%,#5E21DD_50%,#13072C_100%)]",
+    imageSrc: "/homepage_wondera.png",
+    imageAlt: "Wondera mobile app mockup",
+    imageRight: false,
+    href: "/work/wondera",
+  },
+  {
+    title: "NYU Albert Redesign",
+    subtitle: "UX Design",
+    description:
+      "Courses Enrollment System Redesign for efficient and intuitive use.",
+    gradientClassName: "bg-[linear-gradient(to_bottom_right,#2C3E50_0%,#4CA1AF_50%,#C4E0E5_100%)]",
+    imageSrc: "/homepage_nyualbert.png",
+    imageAlt: "NYU Albert redesign mockup",
+    imageRight: true,
+    href: "#",
+  },
+  {
+    title: "Gizmu",
+    subtitle: "UX Design for AR Application",
+    description:
+      "An AR mobile interactive game for everyone creating music based on daily objects.",
+    gradientClassName: "bg-[linear-gradient(to_bottom_right,#FF96D5_0%,#7A4A7C_45%,#2B2145_90%)]",
+    imageSrc: "/homepage_gizmu.png",
+    imageAlt: "Gizmu AR app mockup",
+    imageRight: false,
+    href: "#",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Hi, this is Yen.
+    <div className="min-h-screen bg-black font-sans text-zinc-50">
+      <main className="mx-auto w-full max-w-6xl px-6 pb-24 pt-28 md:px-10 md:pt-32">
+        <section className="mb-20 md:mb-28" aria-labelledby="intro-heading">
+          <h1
+            id="intro-heading"
+            className="max-w-4xl tracking-tight text-white"
+          >
+            <span className="block text-3xl font-semibold leading-tight md:text-4xl md:leading-snug lg:text-5xl">
+              Hi, I am Yen
+            </span>
+            <span className="mt-3 block text-2xl font-semibold leading-snug text-white/90 md:mt-4 md:text-3xl md:leading-snug lg:text-4xl">
+              A Product Designer based in New York. I have experience in AI
+              products, branding and XR interaction
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </section>
+
+        <section id="work" aria-labelledby="work-heading" className="scroll-mt-28">
+          <h2 id="work-heading" className="sr-only">
+            Selected work
+          </h2>
+          <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
+            {projects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );

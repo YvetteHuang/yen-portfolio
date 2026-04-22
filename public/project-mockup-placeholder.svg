@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520" role="img" aria-label="Project mockup placeholder">
+  <rect width="800" height="520" rx="28" fill="rgba(255,255,255,0.12)"/>
+  <rect x="40" y="72" width="440" height="300" rx="16" fill="rgba(255,255,255,0.22)"/>
+  <rect x="64" y="96" width="392" height="220" rx="8" fill="rgba(255,255,255,0.14)"/>
+  <rect x="520" y="100" width="220" height="360" rx="32" fill="rgba(255,255,255,0.2)"/>
+  <rect x="548" y="132" width="164" height="280" rx="20" fill="rgba(255,255,255,0.12)"/>
+</svg>
