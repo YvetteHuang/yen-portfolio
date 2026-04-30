@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { dsFonts, dsLayout, dsSpacing, dsType } from "@/lib/designSystem";
 import { WonderaSolutionFlowScroll } from "./WonderaSolutionFlowScroll";
+import { WonderaSectionToc } from "./WonderaSectionToc";
 
 function PlaceholderFigure({
   label,
@@ -54,9 +55,20 @@ function SectionHeading({ eyebrow, title, subtitle }) {
 }
 
 export default function WonderaCaseStudy() {
+  const tocSections = [
+    { id: "overview", label: "Overview" },
+    { id: "context", label: "Context" },
+    { id: "research", label: "Research" },
+    { id: "design-for-engagement", label: "Design for engagement" },
+    { id: "iteration-for-layout-design", label: "Iteration for layout design" },
+    { id: "design-for-easy-management", label: "Design for easy management" },
+    { id: "outcome", label: "Outcome" },
+    { id: "reflection", label: "Reflection" },
+  ];
+
   return (
     <main
-      className={`${dsFonts.body.className} min-h-screen bg-black pb-24 text-zinc-100`}
+      className={`${dsFonts.body.className} min-h-screen scroll-smooth bg-black pb-24 text-zinc-100`}
     >
       <section className="relative h-[clamp(360px,60vw,1043px)] w-full overflow-hidden bg-[linear-gradient(to_top_right,#6320EE_0%,#351A6B_52%,#161616_100%)]">
         <div className="absolute inset-x-0 top-20 z-20 flex items-center justify-center bg-black py-5 lg:top-24 lg:py-5">
@@ -79,9 +91,14 @@ export default function WonderaCaseStudy() {
       </section>
 
       <article
-        className={`${dsLayout.pageFrame} ${dsSpacing.sectionGap} pt-12 min-[720px]:pt-16 min-[1024px]:pt-20`}
+        className={`${dsLayout.pageFrame} relative pt-12 min-[720px]:pt-16 min-[1024px]:pt-20`}
       >
-        <section className="space-y-12">
+        <div className="relative">
+          <aside className="absolute inset-y-0 left-0 hidden w-52 -translate-x-[calc(100%+1.5rem)] min-[1400px]:block">
+            <WonderaSectionToc sections={tocSections} />
+          </aside>
+          <div className={dsSpacing.sectionGap}>
+            <section id="overview" className="scroll-mt-28 space-y-12">
           <div>
             <p className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}>
               Overview
@@ -143,7 +160,7 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section id="context" className={`${dsSpacing.sectionInner} scroll-mt-28`}>
           <div className="space-y-10">
             <div>
               <p className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}>
@@ -245,7 +262,7 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section id="research" className={`${dsSpacing.sectionInner} scroll-mt-28`}>
           <SectionHeading
             eyebrow="Research"
             title="Flow Gap between Karaoke and AI-Voice Training"
@@ -364,7 +381,10 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section
+          id="design-for-engagement"
+          className={`${dsSpacing.sectionInner} scroll-mt-28`}
+        >
           <div className="space-y-10">
             <div>
               <p
@@ -477,7 +497,10 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section
+          id="iteration-for-layout-design"
+          className={`${dsSpacing.sectionInner} scroll-mt-28`}
+        >
           <div className="space-y-10">
             <div>
               <p
@@ -561,7 +584,10 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section
+          id="design-for-easy-management"
+          className={`${dsSpacing.sectionInner} scroll-mt-28`}
+        >
           <div className="space-y-10">
             <div>
               <p
@@ -666,7 +692,7 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section id="outcome" className={`${dsSpacing.sectionInner} scroll-mt-28`}>
           <SectionHeading
             eyebrow="Outcome"
             title="Impact"
@@ -704,13 +730,13 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={`space-y-5 ${dsSpacing.dividerTop}`}>
+        <section id="reflection" className={`scroll-mt-28 space-y-5 ${dsSpacing.dividerTop}`}>
           <SectionHeading
             eyebrow="Reflection"
             title="Key Takeaways"
             subtitle="Designing AI products is as much about trust and guidance as it is about capability."
           />
-          <div className={`${dsType.body} ${dsLayout.contentMax} space-y-8 text-zinc-300`}>
+          <div className={`${dsType.body} space-y-8 text-zinc-300`}>
             <div className="space-y-3">
               <p className="font-semibold text-zinc-100">
                 - The balance between business needs and user experience
@@ -764,6 +790,8 @@ export default function WonderaCaseStudy() {
             Wondera Case Study
           </p>
         </section>
+          </div>
+        </div>
       </article>
     </main>
   );
