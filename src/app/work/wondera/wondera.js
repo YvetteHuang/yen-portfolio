@@ -241,6 +241,7 @@ export default function WonderaCaseStudy() {
                 </div>
               </div>
             </div>
+
           </div>
         </section>
 
@@ -420,79 +421,248 @@ export default function WonderaCaseStudy() {
                 </div>
               </div>
             </div>
+
+            <div className="grid grid-cols-1 gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <p className={`${dsType.subtitle} text-zinc-100`}>Map layout</p>
+              </div>
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <div className="space-y-12">
+                  <div className="space-y-6">
+                    <div>
+                      <p
+                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                      >
+                        1. Linear Progression with Hub-and-Spoke Navigation
+                      </p>
+                      <p className={`${dsType.body} mt-2 text-zinc-300`}>
+                        Showing all levels in a map and the song number required for
+                        leveling up.
+                      </p>
+                    </div>
+                    <div className="mx-auto w-full max-w-[280px] min-[720px]:max-w-[300px] min-[1024px]:max-w-[320px]">
+                      <Image
+                        src="/wondera_leveldisplay.gif"
+                        alt="Linear progression map layout level display demo"
+                        width={262}
+                        height={566}
+                        className="h-auto w-full"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-6 border-t border-white/10 pt-10 min-[1024px]:pt-12">
+                    <div>
+                      <p
+                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                      >
+                        2. Unified Navigation with Expandable Level Details
+                      </p>
+                    </div>
+                    <div className="mx-auto w-full max-w-[280px] min-[720px]:max-w-[300px] min-[1024px]:max-w-[320px]">
+                      <Image
+                        src="/wondera_expandable_display.gif"
+                        alt="Expandable level details display demo"
+                        width={262}
+                        height={566}
+                        className="h-auto w-full"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         <section className={dsSpacing.sectionInner}>
-          <SectionHeading
-            eyebrow="Strategy"
-            title="Design Principles"
-            subtitle="Three principles guided the end-to-end product direction."
-          />
-          <div className={`${dsType.body} space-y-4 text-zinc-300`}>
-            <p>
-              <span className="font-semibold text-zinc-100">1. Progressive clarity:</span>{" "}
-              show only what users need at each step, and reveal deeper controls when
-              confidence grows.
-            </p>
-            <p>
-              <span className="font-semibold text-zinc-100">2. Explainability first:</span>{" "}
-              communicate why each training task matters and how it improves output.
-            </p>
-            <p>
-              <span className="font-semibold text-zinc-100">3. Reward momentum:</span>{" "}
-              celebrate small wins through meaningful progress markers and lightweight
-              feedback.
-            </p>
+          <div className="space-y-10">
+            <div>
+              <p
+                className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}
+              >
+                Iteration for layout design
+              </p>
+              <h2
+                className={`${dsFonts.display.className} mt-3 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
+              >
+                Iteration for Layout Design
+              </h2>
+            </div>
+
+            <div className="grid gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <p className={`${dsType.subtitle} text-zinc-100`}>User testing</p>
+              </div>
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <div className={`${dsType.body} space-y-5 text-zinc-200`}>
+                  <p>
+                    Through user testing sessions with five participants, I discovered
+                    that all users appreciated the second design, unified navigation.
+                  </p>
+                  <p>
+                    However, one participant noted that the layout made it somewhat
+                    difficult to identify the current level. She was unsure whether the
+                    current level was the upper or lower one.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <p className={`${dsType.subtitle} text-zinc-100`}>Redesign</p>
+              </div>
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <p className={`${dsType.body} text-zinc-200`}>
+                  I found that the current reading order could be confusing for users.
+                  To address this, I reversed the order from bottom to top. This way,
+                  the training map starts from the completed level and progresses to the
+                  next level that requires more training materials. For example, after
+                  finishing the first level, the user will need to train with 5 songs to
+                  reach the Level 2 model.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8" />
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <div className="grid grid-cols-1 gap-8 min-[720px]:grid-cols-2 min-[1024px]:gap-10">
+                  <div className="flex h-full flex-col justify-between gap-4">
+                    <Image
+                      src="/wondera_iteration_before.svg"
+                      alt="Before redesign showing top to bottom level progression"
+                      width={300}
+                      height={648}
+                      className="mx-auto h-auto w-full max-w-[450px]"
+                    />
+                    <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                      Before - Top to bottom
+                    </p>
+                  </div>
+                  <div className="flex h-full flex-col justify-between gap-4">
+                    <Image
+                      src="/wondera_iteration_after.svg"
+                      alt="After redesign showing bottom to top level progression"
+                      width={300}
+                      height={648}
+                      className="mx-auto h-auto w-full max-w-[450px]"
+                    />
+                    <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                      After - Bottom to top
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <PlaceholderFigure label="Principles diagram placeholder" size="sm" />
         </section>
 
         <section className={dsSpacing.sectionInner}>
-          <SectionHeading
-            eyebrow="Design"
-            title="Core Experience"
-            subtitle="The product flow was redesigned from onboarding to daily training."
-          />
-          <div
-            className={`space-y-6 rounded-2xl border border-white/10 bg-white/[0.03] ${dsSpacing.cardPadding}`}
-          >
+          <div className="space-y-10">
             <div>
-              <h3
-                className={`${dsFonts.display.className} ${dsType.h3} font-semibold leading-tight text-zinc-100`}
+              <p
+                className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}
               >
-                Onboarding & Setup
-              </h3>
-              <p className={`${dsType.body} mt-2 text-zinc-300`}>
-                Reframed onboarding into short, guided steps with clear completion
-                states. Users now reach their first sample significantly faster.
+                Design for easy management
               </p>
-            </div>
-            <PlaceholderFigure label="Onboarding screens placeholder" />
-            <div>
-              <h3
-                className={`${dsFonts.display.className} ${dsType.h3} font-semibold leading-tight text-zinc-100`}
+              <h2
+                className={`${dsFonts.display.className} mt-3 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
               >
-                Training Dashboard
-              </h3>
-              <p className={`${dsType.body} mt-2 text-zinc-300`}>
-                Introduced a central dashboard with session goals, quality indicators,
-                and actionable suggestions for next best tasks.
-              </p>
+                Empowering Users with Detailed Information and Intuitive Display for
+                Better Model Training
+              </h2>
             </div>
-            <PlaceholderFigure label="Dashboard UI placeholder" />
-            <div>
-              <h3
-                className={`${dsFonts.display.className} ${dsType.h3} font-semibold leading-tight text-zinc-100`}
-              >
-                Voice Library
-              </h3>
-              <p className={`${dsType.body} mt-2 text-zinc-300`}>
-                Added a structured library to manage generated voice outputs, compare
-                versions, and quickly reuse preferred results.
-              </p>
+
+            <div className="grid grid-cols-1 gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <p className={`${dsType.subtitle} text-zinc-100`}>User needs</p>
+              </div>
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <p className={`${dsType.body} text-zinc-200`}>
+                  From user interviews, it became clear that experienced users require
+                  more detailed information and an intuitive way to manage their
+                  materials to train high-quality AI models.
+                </p>
+              </div>
             </div>
-            <PlaceholderFigure label="Voice library placeholder" />
+
+            <div className="grid grid-cols-1 gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
+              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <p className={`${dsType.subtitle} text-zinc-100`}>Solution</p>
+              </div>
+              <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
+                <div className="space-y-12">
+                  <div className="space-y-6">
+                    <div>
+                      <p
+                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                      >
+                        1. Provide Detailed Information
+                      </p>
+                      <p className={`${dsType.body} mt-2 text-zinc-300`}>
+                        Ensure users have access to comprehensive details about their
+                        collected materials, such as voice quality, language, and range.
+                      </p>
+                    </div>
+                    <div className="mx-auto w-full max-w-[280px] min-[720px]:max-w-[300px] min-[1024px]:max-w-[320px]">
+                      <Image
+                        src="/wondera_moredetails.gif"
+                        alt="Detailed information display for collected voice training materials"
+                        width={262}
+                        height={566}
+                        className="h-auto w-full"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-6 border-t border-white/10 pt-10 min-[1024px]:pt-12">
+                    <div>
+                      <p
+                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                      >
+                        2. Enhanced Display
+                      </p>
+                      <p className={`${dsType.body} mt-2 text-zinc-300`}>
+                        Introduce a more intuitive display that includes brief
+                        information about the current model level and details for each
+                        song.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-1 gap-8 min-[720px]:grid-cols-2 min-[1024px]:gap-10">
+                      <div className="flex h-full flex-col justify-between gap-4">
+                        <Image
+                          src="/wondera_enhance_display_before.svg"
+                          alt="Before enhanced display with fragmented material overview"
+                          width={300}
+                          height={648}
+                          className="mx-auto h-auto w-full max-w-[450px]"
+                        />
+                        <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                          Before
+                        </p>
+                      </div>
+                      <div className="flex h-full flex-col justify-between gap-4">
+                        <Image
+                          src="/wondera_enhance_display_after.svg"
+                          alt="After enhanced display with clearer level and song details"
+                          width={300}
+                          height={648}
+                          className="mx-auto h-auto w-full max-w-[450px]"
+                        />
+                        <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                          After
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -502,33 +672,36 @@ export default function WonderaCaseStudy() {
             title="Impact"
             subtitle="The redesign improved understanding, confidence, and overall engagement."
           />
-          <div className="grid gap-4 min-[1024px]:grid-cols-3">
+          <div className="grid gap-4 min-[1024px]:grid-cols-2">
             <div className="rounded-2xl border border-violet-400/30 bg-violet-500/10 p-5">
               <p
                 className={`${dsFonts.display.className} text-[2.5rem] font-semibold leading-none text-violet-200 min-[1440px]:text-[3.25rem]`}
               >
-                +38%
+                +18%
               </p>
-              <p className={`${dsType.body} mt-2 text-zinc-200`}>Onboarding completion rate</p>
+              <p className={`${dsType.body} mt-2 text-zinc-200`}>
+                Daily engagement with the training feature
+              </p>
             </div>
             <div className="rounded-2xl border border-violet-400/30 bg-violet-500/10 p-5">
               <p
                 className={`${dsFonts.display.className} text-[2.5rem] font-semibold leading-none text-violet-200 min-[1440px]:text-[3.25rem]`}
               >
-                +26%
+                +12%
               </p>
-              <p className={`${dsType.body} mt-2 text-zinc-200`}>7-day training retention</p>
-            </div>
-            <div className="rounded-2xl border border-violet-400/30 bg-violet-500/10 p-5">
-              <p
-                className={`${dsFonts.display.className} text-[2.5rem] font-semibold leading-none text-violet-200 min-[1440px]:text-[3.25rem]`}
-              >
-                -31%
-              </p>
-              <p className={`${dsType.body} mt-2 text-zinc-200`}>Drop-off before first output</p>
+              <p className={`${dsType.body} mt-2 text-zinc-200`}>AI model ownership rate</p>
             </div>
           </div>
-          <PlaceholderFigure label="Final product showcase placeholder" tone="dark" />
+          <div className="mx-auto w-full max-w-[320px] min-[720px]:max-w-[360px] min-[1024px]:max-w-[420px]">
+            <Image
+              src="/wondera_layout.gif"
+              alt="Final product showcase of Wondera training layout"
+              width={430}
+              height={932}
+              className="h-auto w-full"
+              unoptimized
+            />
+          </div>
         </section>
 
         <section className={`space-y-5 ${dsSpacing.dividerTop}`}>
@@ -537,11 +710,47 @@ export default function WonderaCaseStudy() {
             title="Key Takeaways"
             subtitle="Designing AI products is as much about trust and guidance as it is about capability."
           />
-          <p className={`${dsType.body} ${dsLayout.contentMax} text-zinc-300`}>
-            This project reinforced the value of pairing technical sophistication with
-            human-centered storytelling. When users understand what is happening and
-            why it matters, they are far more willing to invest in the journey.
-          </p>
+          <div className={`${dsType.body} ${dsLayout.contentMax} space-y-8 text-zinc-300`}>
+            <div className="space-y-3">
+              <p className="font-semibold text-zinc-100">
+                - The balance between business needs and user experience
+              </p>
+              <p>
+                Initially, I encountered challenges with implementing features, such as
+                adding a button to direct users to the shop within the app, which
+                risked disrupting the user experience. Adding this extra flow seemed to
+                interfere with the main functionality of the product. To address this, I
+                began to explore the reasoning behind the proposed design, aiming to
+                understand the underlying intentions.
+              </p>
+              <p>
+                By considering the business objectives, I learned to redefine the
+                problem and develop new ideas that balance both business needs and user
+                experience. This approach allowed me to create solutions that are more
+                cohesive and user-friendly, aligning better with the overall goals of
+                the product.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <p className="font-semibold text-zinc-100">
+                - The challenge of adding extra focus on an existing framework
+              </p>
+              <p>
+                The app initially functioned as a Karaoke platform with a
+                well-developed gamification system. However, integrating an AI focus
+                shifted the product&apos;s priorities, presenting challenges in merging
+                the new system with the existing one. This shift required rapid
+                iteration to respond to feedback from both user testing and investors.
+              </p>
+              <p>
+                Through this process, I learned the importance of quickly pinpointing
+                key areas for improvement, iterating efficiently, and employing rapid
+                prototyping to evaluate design assumptions. This experience honed my
+                ability to adapt to changing priorities while maintaining a cohesive user
+                experience.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section className={`flex items-center justify-between ${dsSpacing.dividerTop}`}>
