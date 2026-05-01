@@ -1,6 +1,7 @@
 "use client";
 
 import { smoothstep01 } from "./wonderaFlowMorphMath";
+import { dsColors } from "@/lib/designSystem";
 
 /**
  * Flow morph: Karaoke grows (also borrows mid-scroll width from Home via shared math),
@@ -8,9 +9,9 @@ import { smoothstep01 } from "./wonderaFlowMorphMath";
  */
 
 const FLOW = {
-  fill: "#E5D9FF",
-  ink: "#6233C1",
-  text: "#2A1146",
+  fill: dsColors.wondera.flowFillHex,
+  ink: dsColors.wondera.flowInkHex,
+  text: dsColors.wondera.flowTextHex,
 };
 
 const NOTCH = 14;

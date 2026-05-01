@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { dsColors, dsRadius, dsSurface } from "@/lib/designSystem";
 
 export function WonderaSectionToc({ sections }) {
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
@@ -70,7 +71,7 @@ export function WonderaSectionToc({ sections }) {
   return (
     <>
       <nav
-        className="sticky top-24 hidden rounded-2xl border border-white/10 bg-white/[0.02] p-4 min-[1400px]:block"
+        className={`sticky top-24 hidden p-4 min-[1400px]:block ${dsRadius.lg} ${dsSurface.subtleCardOnDark}`}
         aria-label="Wondera case study table of contents"
       >
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
@@ -84,9 +85,9 @@ export function WonderaSectionToc({ sections }) {
                 <a
                   href={`#${section.id}`}
                   onClick={(event) => handleNavClick(event, section.id)}
-                  className={`block rounded-md px-3 py-2 text-sm transition-colors ${
+                  className={`block ${dsRadius.sm} px-3 py-2 text-sm transition-colors ${
                     isActive
-                      ? "bg-violet-400/20 text-violet-200"
+                      ? `${dsColors.wondera.accentBackgroundSelected} ${dsColors.wondera.accentText}`
                       : "text-zinc-400 hover:bg-white/5 hover:text-zinc-100"
                   }`}
                 >
@@ -102,7 +103,7 @@ export function WonderaSectionToc({ sections }) {
         <button
           type="button"
           onClick={() => setIsDrawerOpen((prev) => !prev)}
-          className="fixed bottom-6 right-6 z-40 rounded-full border border-violet-300/40 bg-violet-500/25 px-4 py-2 text-sm font-semibold text-violet-100 backdrop-blur transition hover:bg-violet-500/35"
+          className={`fixed bottom-6 right-6 z-40 border px-4 py-2 text-sm font-semibold transition ${dsRadius.full} ${dsColors.wondera.accentBorderInteractive} ${dsColors.wondera.accentBackgroundInteractive} ${dsColors.wondera.accentSoftText} ${dsColors.wondera.accentBackgroundInteractiveHover}`}
           aria-expanded={isDrawerOpen}
           aria-controls="wondera-toc-drawer"
         >
@@ -119,7 +120,7 @@ export function WonderaSectionToc({ sections }) {
 
         <nav
           id="wondera-toc-drawer"
-          className={`fixed bottom-20 right-4 z-50 w-[min(22rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-zinc-950/95 p-4 shadow-2xl backdrop-blur transition duration-200 ${
+          className={`fixed bottom-20 right-4 z-50 w-[min(22rem,calc(100vw-2rem))] p-4 transition duration-200 ${dsRadius.lg} ${dsSurface.drawerOnDark} ${
             isDrawerOpen
               ? "translate-y-0 opacity-100"
               : "pointer-events-none translate-y-2 opacity-0"
@@ -137,9 +138,9 @@ export function WonderaSectionToc({ sections }) {
                   <a
                     href={`#${section.id}`}
                     onClick={(event) => handleNavClick(event, section.id)}
-                    className={`block rounded-md px-3 py-2 text-sm transition-colors ${
+                    className={`block ${dsRadius.sm} px-3 py-2 text-sm transition-colors ${
                       isActive
-                        ? "bg-violet-400/20 text-violet-200"
+                        ? `${dsColors.wondera.accentBackgroundSelected} ${dsColors.wondera.accentText}`
                         : "text-zinc-300 hover:bg-white/5 hover:text-zinc-100"
                     }`}
                   >

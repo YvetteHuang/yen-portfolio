@@ -3,10 +3,12 @@
  * align with the blocks below. Chevron overlap uses a fixed notch width.
  */
 
+import { dsColors } from "@/lib/designSystem";
+
 const FLOW = {
-  fill: "#E5D9FF",
-  ink: "#6233C1",
-  text: "#2A1146",
+  fill: dsColors.wondera.flowFillHex,
+  ink: dsColors.wondera.flowInkHex,
+  text: dsColors.wondera.flowTextHex,
 };
 
 const NOTCH = 14;
