@@ -1,7 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { dsFonts, dsLayout, dsSpacing, dsType } from "@/lib/designSystem";
+import {
+  dsColors,
+  dsDivider,
+  dsFonts,
+  dsLayout,
+  dsRadius,
+  dsSpacing,
+  dsSurface,
+  dsType,
+} from "@/lib/designSystem";
 import { WonderaSolutionFlowScroll } from "./WonderaSolutionFlowScroll";
+import { WonderaSectionToc } from "./WonderaSectionToc";
 
 function PlaceholderFigure({
   label,
@@ -36,11 +46,13 @@ function PlaceholderFigure({
 function SectionHeading({ eyebrow, title, subtitle }) {
   return (
     <header className="space-y-3">
-      <p className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}>
+      <p
+        className={`${dsFonts.body.className} ${dsType.meta} ${dsColors.wondera.eyebrow} font-semibold`}
+      >
         {eyebrow}
       </p>
       <h2
-        className={`${dsFonts.display.className} ${dsType.h2} font-semibold leading-[1.08] tracking-tight text-zinc-100`}
+        className={`${dsFonts.display.className} ${dsType.h2} font-semibold text-zinc-100`}
       >
         {title}
       </h2>
@@ -54,11 +66,24 @@ function SectionHeading({ eyebrow, title, subtitle }) {
 }
 
 export default function WonderaCaseStudy() {
+  const tocSections = [
+    { id: "overview", label: "Overview" },
+    { id: "context", label: "Context" },
+    { id: "research", label: "Research" },
+    { id: "design-for-engagement", label: "Design for engagement" },
+    { id: "iteration-for-layout-design", label: "Iteration for layout design" },
+    { id: "design-for-easy-management", label: "Design for easy management" },
+    { id: "outcome", label: "Outcome" },
+    { id: "reflection", label: "Reflection" },
+  ];
+
   return (
     <main
-      className={`${dsFonts.body.className} min-h-screen bg-black pb-24 text-zinc-100`}
+      className={`${dsFonts.body.className} min-h-screen scroll-smooth bg-black pb-24 text-zinc-100`}
     >
-      <section className="relative h-[clamp(360px,60vw,1043px)] w-full overflow-hidden bg-[linear-gradient(to_top_right,#6320EE_0%,#351A6B_52%,#161616_100%)]">
+      <section
+        className={`relative h-[clamp(360px,60vw,1043px)] w-full overflow-hidden ${dsColors.wondera.heroGradient}`}
+      >
         <div className="absolute inset-x-0 top-20 z-20 flex items-center justify-center bg-black py-5 lg:top-24 lg:py-5">
           <h1
             className={`${dsFonts.display.className} ${dsType.h1} font-semibold tracking-tight text-white`}
@@ -79,15 +104,22 @@ export default function WonderaCaseStudy() {
       </section>
 
       <article
-        className={`${dsLayout.pageFrame} ${dsSpacing.sectionGap} pt-12 min-[720px]:pt-16 min-[1024px]:pt-20`}
+        className={`${dsLayout.pageFrame} relative pt-12 min-[720px]:pt-16 min-[1024px]:pt-20`}
       >
-        <section className="space-y-12">
+        <div className="relative">
+          <aside className="absolute inset-y-0 left-0 hidden w-52 -translate-x-[calc(100%+1.5rem)] min-[1400px]:block">
+            <WonderaSectionToc sections={tocSections} />
+          </aside>
+          <div className={dsSpacing.sectionGap}>
+            <section id="overview" className="scroll-mt-28 space-y-12">
           <div>
-            <p className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}>
+            <p
+              className={`${dsFonts.body.className} ${dsType.meta} ${dsColors.wondera.eyebrow} font-semibold`}
+            >
               Overview
             </p>
             <h2
-              className={`${dsFonts.display.className} mt-5 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
+              className={`${dsFonts.display.className} ${dsType.h2} ${dsColors.text.primaryOnDark} mt-5 font-semibold`}
             >
               Improve the Engagement and Efficiency of AI training process for user
               to raise the conversion rate
@@ -143,14 +175,16 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section id="context" className={`${dsSpacing.sectionInner} scroll-mt-28`}>
           <div className="space-y-10">
             <div>
-              <p className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}>
+              <p
+                className={`${dsFonts.body.className} ${dsType.meta} ${dsColors.wondera.eyebrow} font-semibold`}
+              >
                 Context
               </p>
               <h2
-                className={`${dsFonts.display.className} mt-3 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
+                className={`${dsFonts.display.className} ${dsType.h2} ${dsColors.text.primaryOnDark} mt-3 font-semibold`}
               >
                 AI-Empowered Karaoke Social App for General Public
               </h2>
@@ -158,7 +192,7 @@ export default function WonderaCaseStudy() {
 
             <div className="space-y-10 min-[1024px]:space-y-12">
               <div className="grid gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
-                <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+                <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                   <p className={`${dsType.subtitle} text-zinc-100`}>
                     Challenge
                   </p>
@@ -184,8 +218,8 @@ export default function WonderaCaseStudy() {
                 </div>
               </div>
 
-              <div className="grid gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
-                <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+              <div className={`grid gap-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12`}>
+                <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                   <p className={`${dsType.subtitle} text-zinc-100`}>
                     Target Users
                   </p>
@@ -245,7 +279,7 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section id="research" className={`${dsSpacing.sectionInner} scroll-mt-28`}>
           <SectionHeading
             eyebrow="Research"
             title="Flow Gap between Karaoke and AI-Voice Training"
@@ -253,7 +287,7 @@ export default function WonderaCaseStudy() {
 
           <div className="mt-10 space-y-12">
             <div className="grid gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>
                   Interviews
                 </p>
@@ -269,7 +303,9 @@ export default function WonderaCaseStudy() {
                   </p>
 
                   <div className="space-y-6">
-                    <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                    <div
+                      className={`flex items-start gap-4 p-4 ${dsRadius.lg} ${dsSurface.elevatedCardOnDark}`}
+                    >
                       <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-full bg-zinc-800">
                         <Image
                           src="/user1.png"
@@ -290,7 +326,9 @@ export default function WonderaCaseStudy() {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                    <div
+                      className={`flex items-start gap-4 p-4 ${dsRadius.lg} ${dsSurface.elevatedCardOnDark}`}
+                    >
                       <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-full bg-zinc-800">
                         <Image
                           src="/user3.png"
@@ -315,8 +353,8 @@ export default function WonderaCaseStudy() {
               </div>
             </div>
 
-            <div className="grid gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+            <div className={`grid gap-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12`}>
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>Research Highlight</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -351,10 +389,12 @@ export default function WonderaCaseStudy() {
         </section>
 
         <section className="my-6 text-white">
-          <div className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 bg-[#32167A] py-16 min-[720px]:py-20 min-[1024px]:py-24">
+          <div
+            className={`relative left-1/2 right-1/2 w-screen -translate-x-1/2 py-16 min-[720px]:py-20 min-[1024px]:py-24 ${dsColors.wondera.quoteBandBackground}`}
+          >
             <div className={`${dsLayout.pageFrame}`}>
               <p
-                className={`${dsFonts.display.className} max-w-4xl text-left text-[1.75rem] font-semibold leading-[1.4] tracking-tight min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem]`}
+                className={`${dsFonts.display.className} ${dsType.emphasisHeading} max-w-4xl text-left font-semibold`}
               >
                 How Might We enhance <span className="font-extrabold">engagement</span> and{" "}
                 <span className="font-extrabold">ease of management</span> for AI voice training
@@ -364,25 +404,28 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section
+          id="design-for-engagement"
+          className={`${dsSpacing.sectionInner} scroll-mt-28`}
+        >
           <div className="space-y-10">
             <div>
               <p
-                className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}
+                className={`${dsFonts.body.className} ${dsType.meta} ${dsColors.wondera.eyebrow} font-semibold`}
               >
                 Design for engagement
               </p>
               <h2
-                className={`${dsFonts.display.className} mt-3 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
+                className={`${dsFonts.display.className} ${dsType.h2} ${dsColors.text.primaryOnDark} mt-3 font-semibold`}
               >
                 Boosting{" "}
-                <span className="text-violet-300">Engagement</span> with Integrated Training
+                <span className={dsColors.wondera.eyebrow}>Engagement</span> with Integrated Training
                 Flow, and a Progress Map Layout
               </h2>
             </div>
 
             <div className="grid grid-cols-1 gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>Product direction</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -402,8 +445,8 @@ export default function WonderaCaseStudy() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+            <div className={`grid grid-cols-1 gap-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12`}>
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>Solution</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -415,15 +458,15 @@ export default function WonderaCaseStudy() {
                     fragmented journey with the unified one we shipped.
                   </p>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 min-[1024px]:p-8">
+                  <div className={`${dsRadius.lg} ${dsSurface.subtleCardOnDark} p-6 min-[1024px]:p-8`}>
                     <WonderaSolutionFlowScroll />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+            <div className={`grid grid-cols-1 gap-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12`}>
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>Map layout</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -431,7 +474,7 @@ export default function WonderaCaseStudy() {
                   <div className="space-y-6">
                     <div>
                       <p
-                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                        className={`${dsFonts.body.className} ${dsType.featureTitle} ${dsColors.text.primaryOnDark}`}
                       >
                         1. Linear Progression with Hub-and-Spoke Navigation
                       </p>
@@ -452,10 +495,10 @@ export default function WonderaCaseStudy() {
                     </div>
                   </div>
 
-                  <div className="space-y-6 border-t border-white/10 pt-10 min-[1024px]:pt-12">
+                  <div className={`space-y-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:pt-12`}>
                     <div>
                       <p
-                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                        className={`${dsFonts.body.className} ${dsType.featureTitle} ${dsColors.text.primaryOnDark}`}
                       >
                         2. Unified Navigation with Expandable Level Details
                       </p>
@@ -477,23 +520,26 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section
+          id="iteration-for-layout-design"
+          className={`${dsSpacing.sectionInner} scroll-mt-28`}
+        >
           <div className="space-y-10">
             <div>
               <p
-                className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}
+                className={`${dsFonts.body.className} ${dsType.meta} ${dsColors.wondera.eyebrow} font-semibold`}
               >
                 Iteration for layout design
               </p>
               <h2
-                className={`${dsFonts.display.className} mt-3 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
+                className={`${dsFonts.display.className} ${dsType.h2} ${dsColors.text.primaryOnDark} mt-3 font-semibold`}
               >
                 Iteration for Layout Design
               </h2>
             </div>
 
             <div className="grid gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>User testing</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -511,8 +557,8 @@ export default function WonderaCaseStudy() {
               </div>
             </div>
 
-            <div className="grid gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+            <div className={`grid gap-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10`}>
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>Redesign</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -527,8 +573,8 @@ export default function WonderaCaseStudy() {
               </div>
             </div>
 
-            <div className="grid gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8" />
+            <div className={`grid gap-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10`}>
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`} />
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
                 <div className="grid grid-cols-1 gap-8 min-[720px]:grid-cols-2 min-[1024px]:gap-10">
                   <div className="flex h-full flex-col justify-between gap-4">
@@ -539,7 +585,9 @@ export default function WonderaCaseStudy() {
                       height={648}
                       className="mx-auto h-auto w-full max-w-[450px]"
                     />
-                    <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                    <p
+                      className={`${dsFonts.body.className} ${dsType.figureCaption} ${dsColors.text.primaryOnDark} text-center`}
+                    >
                       Before - Top to bottom
                     </p>
                   </div>
@@ -551,7 +599,9 @@ export default function WonderaCaseStudy() {
                       height={648}
                       className="mx-auto h-auto w-full max-w-[450px]"
                     />
-                    <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                    <p
+                      className={`${dsFonts.body.className} ${dsType.figureCaption} ${dsColors.text.primaryOnDark} text-center`}
+                    >
                       After - Bottom to top
                     </p>
                   </div>
@@ -561,16 +611,19 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section
+          id="design-for-easy-management"
+          className={`${dsSpacing.sectionInner} scroll-mt-28`}
+        >
           <div className="space-y-10">
             <div>
               <p
-                className={`${dsFonts.body.className} ${dsType.meta} font-semibold text-violet-300`}
+                className={`${dsFonts.body.className} ${dsType.meta} ${dsColors.wondera.eyebrow} font-semibold`}
               >
                 Design for easy management
               </p>
               <h2
-                className={`${dsFonts.display.className} mt-3 text-[2.25rem] font-semibold leading-[1.14] tracking-tight text-zinc-100 min-[720px]:text-[2.75rem] min-[1024px]:text-[3.25rem] min-[1440px]:text-[4rem]`}
+                className={`${dsFonts.display.className} ${dsType.h2} ${dsColors.text.primaryOnDark} mt-3 font-semibold`}
               >
                 Empowering Users with Detailed Information and Intuitive Display for
                 Better Model Training
@@ -578,7 +631,7 @@ export default function WonderaCaseStudy() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 min-[1024px]:grid-cols-12 min-[1024px]:gap-10">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>User needs</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -590,8 +643,8 @@ export default function WonderaCaseStudy() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 border-t border-white/10 pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12">
-              <div className="min-[1024px]:col-span-3 min-[1024px]:border-r min-[1024px]:border-white/10 min-[1024px]:pr-8">
+            <div className={`grid grid-cols-1 gap-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:grid-cols-12 min-[1024px]:gap-10 min-[1024px]:pt-12`}>
+              <div className={`min-[1024px]:col-span-3 ${dsDivider.rightOnDesktopOnDark} min-[1024px]:pr-8`}>
                 <p className={`${dsType.subtitle} text-zinc-100`}>Solution</p>
               </div>
               <div className="min-[1024px]:col-span-9 min-[1024px]:pl-2">
@@ -599,7 +652,7 @@ export default function WonderaCaseStudy() {
                   <div className="space-y-6">
                     <div>
                       <p
-                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                        className={`${dsFonts.body.className} ${dsType.featureTitle} ${dsColors.text.primaryOnDark}`}
                       >
                         1. Provide Detailed Information
                       </p>
@@ -620,10 +673,10 @@ export default function WonderaCaseStudy() {
                     </div>
                   </div>
 
-                  <div className="space-y-6 border-t border-white/10 pt-10 min-[1024px]:pt-12">
+                  <div className={`space-y-6 ${dsDivider.topOnDark} pt-10 min-[1024px]:pt-12`}>
                     <div>
                       <p
-                        className={`${dsFonts.body.className} text-[1.2rem] font-semibold leading-snug text-zinc-100 min-[1024px]:text-[1.35rem]`}
+                        className={`${dsFonts.body.className} ${dsType.featureTitle} ${dsColors.text.primaryOnDark}`}
                       >
                         2. Enhanced Display
                       </p>
@@ -642,7 +695,9 @@ export default function WonderaCaseStudy() {
                           height={648}
                           className="mx-auto h-auto w-full max-w-[450px]"
                         />
-                        <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                        <p
+                          className={`${dsFonts.body.className} ${dsType.figureCaption} ${dsColors.text.primaryOnDark} text-center`}
+                        >
                           Before
                         </p>
                       </div>
@@ -654,7 +709,9 @@ export default function WonderaCaseStudy() {
                           height={648}
                           className="mx-auto h-auto w-full max-w-[450px]"
                         />
-                        <p className={`${dsFonts.body.className} text-center text-[1.05rem] font-semibold text-zinc-100`}>
+                        <p
+                          className={`${dsFonts.body.className} ${dsType.figureCaption} ${dsColors.text.primaryOnDark} text-center`}
+                        >
                           After
                         </p>
                       </div>
@@ -666,16 +723,16 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={dsSpacing.sectionInner}>
+        <section id="outcome" className={`${dsSpacing.sectionInner} scroll-mt-28`}>
           <SectionHeading
             eyebrow="Outcome"
             title="Impact"
             subtitle="The redesign improved understanding, confidence, and overall engagement."
           />
           <div className="grid gap-4 min-[1024px]:grid-cols-2">
-            <div className="rounded-2xl border border-violet-400/30 bg-violet-500/10 p-5">
+            <div className={`${dsRadius.lg} ${dsSurface.accentCardWondera} p-5`}>
               <p
-                className={`${dsFonts.display.className} text-[2.5rem] font-semibold leading-none text-violet-200 min-[1440px]:text-[3.25rem]`}
+                className={`${dsFonts.display.className} ${dsType.statValue} ${dsColors.wondera.accentText}`}
               >
                 +18%
               </p>
@@ -683,9 +740,9 @@ export default function WonderaCaseStudy() {
                 Daily engagement with the training feature
               </p>
             </div>
-            <div className="rounded-2xl border border-violet-400/30 bg-violet-500/10 p-5">
+            <div className={`${dsRadius.lg} ${dsSurface.accentCardWondera} p-5`}>
               <p
-                className={`${dsFonts.display.className} text-[2.5rem] font-semibold leading-none text-violet-200 min-[1440px]:text-[3.25rem]`}
+                className={`${dsFonts.display.className} ${dsType.statValue} ${dsColors.wondera.accentText}`}
               >
                 +12%
               </p>
@@ -704,13 +761,13 @@ export default function WonderaCaseStudy() {
           </div>
         </section>
 
-        <section className={`space-y-5 ${dsSpacing.dividerTop}`}>
+        <section id="reflection" className={`scroll-mt-28 space-y-5 ${dsSpacing.dividerTop}`}>
           <SectionHeading
             eyebrow="Reflection"
             title="Key Takeaways"
             subtitle="Designing AI products is as much about trust and guidance as it is about capability."
           />
-          <div className={`${dsType.body} ${dsLayout.contentMax} space-y-8 text-zinc-300`}>
+          <div className={`${dsType.body} space-y-8 text-zinc-300`}>
             <div className="space-y-3">
               <p className="font-semibold text-zinc-100">
                 - The balance between business needs and user experience
@@ -764,6 +821,8 @@ export default function WonderaCaseStudy() {
             Wondera Case Study
           </p>
         </section>
+          </div>
+        </div>
       </article>
     </main>
   );

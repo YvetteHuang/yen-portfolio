@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { smoothstep01 } from "./wonderaFlowMorphMath";
+import { dsSurface } from "@/lib/designSystem";
 
 const MOCK = {
   slot1After: "/wondera_training_before.svg",
@@ -47,7 +48,9 @@ export function WonderaSolutionMockupRow({ progress, reduceMotion }) {
   return (
     <>
       <div className="mt-5 min-[1024px]:hidden">
-        <div className="relative mx-auto aspect-[16/9] w-full max-w-[30rem] overflow-hidden rounded-lg border border-white/10 bg-black/30">
+        <div
+          className={`relative mx-auto aspect-[16/9] w-full max-w-[30rem] overflow-hidden ${dsSurface.mobilePreviewOnDark}`}
+        >
           <div className="absolute inset-0" style={{ opacity: 1 - mobileAfterOpacity }}>
             <Image
               src={MOCK.mobileBefore}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { dsDivider } from "@/lib/designSystem";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,7 +22,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 z-50 flex w-full items-center justify-between px-8 py-6 text-white transition-colors duration-300 ${
         isScrolled
-          ? "border-b border-white/10 bg-black/50 backdrop-blur-md"
+          ? `${dsDivider.navbarBottomOnDark} bg-black/50 backdrop-blur-md`
           : "border-b border-transparent bg-transparent"
       }`}
     >
