@@ -25,15 +25,15 @@ const projects = [
     href: "/work/wondera",
   },
   {
-    title: "NYU Albert Redesign",
-    subtitle: "UX Design",
+    title: "Design System for StockNews.ai",
+    subtitle: "Founding Designer @StockNews.ai",
     description:
-      "Courses Enrollment System Redesign for efficient and intuitive use.",
-    gradientClassName: "bg-[linear-gradient(to_bottom_right,#2C3E50_0%,#4CA1AF_50%,#C4E0E5_100%)]",
-    imageSrc: "/homepage_nyualbert.png",
-    imageAlt: "NYU Albert redesign mockup",
+      "Built a design system from zero in parallel with a live product — Figma to CSS to Storybook.",
+    gradientClassName: "bg-[linear-gradient(to_bottom_right,#1C4481_0%,#096AFA_56%,#2DC3D8_100%)]",
+    imageSrc: "/homepage_ds.svg",
+    imageAlt: "StockNews.ai design system mockup",
     imageRight: true,
-    href: "#",
+    href: "/work/design-system",
   },
   {
     title: "Gizmu",
