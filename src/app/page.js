@@ -1,43 +1,47 @@
 import ProjectCard from "@/components/ProjectCard";
+import { dsFonts, dsType } from "@/lib/designSystem";
 
 
 const projects = [
   {
-    title: "SotckNews.ai",
-    subtitle: "UX Design",
+    title: "StockNews.AI",
+    tags: ["AI Product", "Fintech SaaS", "0 → 1"],
     description:
-      "Courses Enrollment System Redesign for efficient and intuitive use.",
+      "Redesigned an AI-powered financial news platform from 0→1. 58% increase in free-to-paid conversion.",
     gradientClassName: "bg-[linear-gradient(to_bottom_right,#87AEF6_0%,#5494DD_36%,#4271AA_62%,#1E2A43_100%)]",
-    imageSrc: "/homepage_stocknews.svg",
-    imageAlt: "SotckNews.ai product screens mockup",
-    imageRight: true,
+    imageSrc: "/homepage_stocknews.png",
+    imageAlt: "StockNews.AI product screens mockup",
+    imageRight: false,
+    imageHeightClassName: "h-[17.5rem] sm:h-[20rem] md:h-[22.5rem] lg:h-[25rem]",
     href: "#",
   },
   {
-    title: "Wondera",
-    subtitle: "Product Design @Future Effects Studio",
-    description:
-      "A personal AI training app enables people to train their own unique AI voice.",
-    gradientClassName: "bg-[linear-gradient(to_bottom_left,#B693FF_0%,#5E21DD_50%,#13072C_100%)]",
-    imageSrc: "/homepage_wondera.png",
-    imageAlt: "Wondera mobile app mockup",
-    imageRight: false,
-    href: "/work/wondera",
-  },
-  {
     title: "Design System for StockNews.ai",
-    subtitle: "Founding Designer @StockNews.ai",
+    tags: ["Design System", "Figma → Storybook"],
     description:
-      "Built a design system from zero in parallel with a live product — Figma to CSS to Storybook.",
+      "Built a design system from scratch while shipping a live product redesign. Reduced engineer handoff cycle by 25%.",
     gradientClassName: "bg-[linear-gradient(to_bottom_right,#1C4481_0%,#096AFA_56%,#2DC3D8_100%)]",
-    imageSrc: "/homepage_ds.svg",
+    imageSrc: "/homepage_ds.png",
     imageAlt: "StockNews.ai design system mockup",
     imageRight: true,
     href: "/work/design-system",
   },
   {
+    title: "Wondera",
+    tags: ["AI Product", "Mobile", "Consumer App"],
+    description:
+      "Designed the mobile experience for an AI-powered karaoke app. 18% increase in Daily Active Users.",
+    gradientClassName: "bg-[linear-gradient(to_bottom_left,#B693FF_0%,#5E21DD_50%,#13072C_100%)]",
+    imageSrc: "/homepage_wondera.png",
+    imageAlt: "Wondera mobile app mockup",
+    imageRight: false,
+    imageHeightClassName: "h-80 sm:h-96 md:h-full",
+    imageOffsetClassName: "md:-translate-x-6 lg:-translate-x-12",
+    href: "/work/wondera",
+  },
+  {
     title: "Gizmu",
-    subtitle: "UX Design for AR Application",
+    tags: ["UX Design", "AR", "Music Game"],
     description:
       "An AR mobile interactive game for everyone creating music based on daily objects.",
     gradientClassName: "bg-[linear-gradient(to_bottom_right,#FF96D5_0%,#7A4A7C_45%,#2B2145_90%)]",
@@ -45,6 +49,7 @@ const projects = [
     imageAlt: "Gizmu AR app mockup",
     imageRight: false,
     href: "#",
+    hidden: true,
   },
 ];
 
@@ -55,16 +60,16 @@ export default function Home() {
         <section className="mb-20 md:mb-28" aria-labelledby="intro-heading">
           <h1
             id="intro-heading"
-            className="max-w-4xl tracking-tight text-white"
+            className={`${dsFonts.display.className} ${dsType.h1} max-w-4xl font-semibold tracking-tight text-white`}
           >
-            <span className="block text-3xl font-semibold leading-tight md:text-4xl md:leading-snug lg:text-5xl">
-              Hi, I am Yen
-            </span>
-            <span className="mt-3 block text-2xl font-semibold leading-snug text-white/90 md:mt-4 md:text-3xl md:leading-snug lg:text-4xl">
-              A Product Designer based in New York. I have experience in AI
-              products, branding and XR interaction
-            </span>
+            Hi, I&apos;m Yen.
           </h1>
+          <p
+            className={`${dsFonts.body.className} ${dsType.heroLede} mt-2 text-white/90`}
+          >
+            Product Designer specializing in AI products, fintech, and design
+            systems
+          </p>
         </section>
 
         <section id="work" aria-labelledby="work-heading" className="scroll-mt-28">
@@ -72,9 +77,11 @@ export default function Home() {
             Selected work
           </h2>
           <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
-            ))}
+            {projects
+              .filter((project) => !project.hidden)
+              .map((project) => (
+                <ProjectCard key={project.title} {...project} />
+              ))}
           </div>
         </section>
       </main>
