@@ -11,7 +11,7 @@ const projects = [
     imageSrc: "/homepage_stocknews.svg",
     imageAlt: "SotckNews.ai product screens mockup",
     imageRight: true,
-    href: "#",
+    href: "/work/stocknews",
   },
   {
     title: "Wondera",

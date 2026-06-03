@@ -40,6 +40,16 @@ export const dsType = {
     "text-[2.5rem] min-[1440px]:text-[3.25rem] font-semibold leading-none",
 };
 
+// Case study body copy — explicit size/line-height pairs per breakpoint (Figma Body 01 at 720px+).
+// Mobile: 16/24 · Tablet & desktop: 18/28
+export const dsCaseStudyType = {
+  body:
+    "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7",
+  subtitle:
+    "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7 font-bold uppercase",
+  sectionEyebrow: "text-base font-bold uppercase",
+};
+
 export const dsLayout = {
   pageFrame:
     "mx-auto w-full max-w-[1220px] px-6 min-[720px]:px-10 min-[1024px]:px-12 min-[1440px]:max-w-[1320px]",
