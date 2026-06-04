@@ -6,6 +6,7 @@ import { dsFonts } from "@/lib/designSystem";
 /**
  * @param {object} props
  * @param {string} props.title
+ * @param {string} [props.titleLine2] - Optional smaller, lighter second line under the title
  * @param {string[]} [props.tags] - Short labels rendered as pills under the title
  * @param {string} props.description
  * @param {string} props.gradientClassName - Tailwind gradient utilities, e.g. "bg-gradient-to-br from-blue-600 to-cyan-500"
@@ -18,6 +19,7 @@ import { dsFonts } from "@/lib/designSystem";
  */
 export default function ProjectCard({
   title,
+  titleLine2,
   tags = [],
   description,
   gradientClassName,
@@ -38,6 +40,11 @@ export default function ProjectCard({
         className={`${dsFonts.display.className} text-[clamp(2rem,5vw,3rem)] font-bold leading-tight tracking-tight text-white`}
       >
         {title}
+        {titleLine2 && (
+          <span className="mt-1 block text-[clamp(1.125rem,2.5vw,1.625rem)] font-normal text-white/80">
+            {titleLine2}
+          </span>
+        )}
       </h3>
       {tags.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">

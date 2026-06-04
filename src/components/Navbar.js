@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 z-50 flex w-full items-center justify-between px-8 py-6 text-white transition-colors duration-300 ${
+      className={`fixed top-0 z-50 flex w-full items-center justify-between px-6 py-6 text-white transition-colors duration-300 md:px-10 lg:px-[60px] ${
         isScrolled
           ? `${dsDivider.navbarBottomOnDark} bg-black/50 backdrop-blur-md`
           : "border-b border-transparent bg-transparent"
@@ -43,14 +43,11 @@ export default function Navbar() {
 
       {/* 右側 導航 */}
       <div className="flex gap-8 text-sm font-medium">
-        <Link href="/work" className="transition-colors hover:text-gray-400">
-          Works
-        </Link>
-        <Link href="/about" className="transition-colors hover:text-gray-400">
+        <Link href="/#about" className="transition-colors hover:text-gray-400">
           About
         </Link>
         <Link
-          href="mailto:your-email@example.com"
+          href="mailto:yvettehuang.design@gmail.com"
           className="transition-colors hover:text-gray-400"
         >
           Contact
