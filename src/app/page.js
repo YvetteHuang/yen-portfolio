@@ -10,11 +10,13 @@ const projects = [
     description:
       "Redesigned an AI-powered financial news platform from 0→1. 58% increase in free-to-paid conversion.",
     gradientClassName: "bg-[linear-gradient(to_bottom_right,#87AEF6_0%,#5494DD_36%,#4271AA_62%,#1E2A43_100%)]",
+
     imageSrc: "/homepage_stocknews.png",
     imageAlt: "StockNews.AI product screens mockup",
     imageRight: false,
     imageHeightClassName: "h-[17.5rem] sm:h-[20rem] md:h-[22.5rem] lg:h-[25rem]",
-    href: "#",
+    href: "#/work/stocknews",
+
   },
   {
     title: "Design System for StockNews.ai",
