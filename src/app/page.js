@@ -15,7 +15,7 @@ const projects = [
     imageAlt: "StockNews.AI product screens mockup",
     imageRight: false,
     imageHeightClassName: "h-[17.5rem] sm:h-[20rem] md:h-[22.5rem] lg:h-[25rem]",
-    href: "#/work/stocknews",
+    href: "/work/stocknews",
 
   },
   {
@@ -39,7 +39,8 @@ const projects = [
     imageAlt: "Wondera mobile app mockup",
     imageRight: false,
     imageHeightClassName: "h-80 sm:h-96 md:h-full",
-    imageOffsetClassName: "md:-translate-x-6 lg:-translate-x-12",
+    imageOffsetClassName:
+      "md:scale-[0.85] md:group-hover:scale-100 md:-translate-x-6 lg:-translate-x-12",
     href: "/work/wondera",
   },
   {

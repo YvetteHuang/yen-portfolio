@@ -444,7 +444,7 @@ export default function StockNewsCaseStudy() {
         <div className="relative mx-auto flex h-full w-full max-w-[1800px] items-end justify-center px-2 pb-1 pt-28 min-[720px]:px-4 min-[720px]:pt-32 min-[1024px]:pb-3 min-[1024px]:pt-36">
           <div className="relative h-[324px] w-full max-w-[1488px] min-[720px]:h-[432px] min-[1024px]:h-[600px]">
             <Image
-              src="/homepage_stocknews.svg"
+              src="/homepage_stocknews.png"
               alt="StockNews case study hero visual"
               fill
               className="object-contain p-0"

@@ -25,7 +25,7 @@ const socials = [
 ];
 
 // Pages whose content sits on a light background use the light footer.
-const LIGHT_FOOTER_ROUTES = ["/work/design-system"];
+const LIGHT_FOOTER_ROUTES = [];
 
 export default function Footer({ variant }) {
   const pathname = usePathname();
