@@ -3,10 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { dsDivider } from "@/lib/designSystem";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const scrollToAbout = (event) => {
+    if (pathname !== "/") return;
+
+    const about = document.getElementById("about");
+    if (!about) return;
+
+    event.preventDefault();
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    about.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+    window.history.pushState(null, "", "/#about");
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -17,6 +36,24 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (pathname !== "/" || window.location.hash !== "#about") return;
+
+    const about = document.getElementById("about");
+    if (!about) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    requestAnimationFrame(() => {
+      about.scrollIntoView({
+        behavior: reducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  }, [pathname]);
 
   return (
     <nav
@@ -43,7 +80,11 @@ export default function Navbar() {
 
       {/* 右側 導航 */}
       <div className="flex gap-8 text-sm font-medium">
-        <Link href="/#about" className="transition-colors hover:text-gray-400">
+        <Link
+          href="/#about"
+          onClick={scrollToAbout}
+          className="transition-colors hover:text-gray-400"
+        >
           About
         </Link>
         <Link

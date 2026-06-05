@@ -1,3 +1,4 @@
+import AboutSection from "@/components/AboutSection";
 import ProjectCard from "@/components/ProjectCard";
 import { dsFonts, dsType } from "@/lib/designSystem";
 
@@ -67,8 +68,11 @@ export default function Home() {
           <p
             className={`${dsFonts.body.className} ${dsType.heroLede} mt-2 text-white/90`}
           >
-            Product Designer specializing in AI products, fintech, and design
-            systems
+            Product Designer who thinks in systems,
+            <br />
+            sweats the details, and never stops asking why.
+            <br />
+            Currently focused on AI products and fintech.
           </p>
         </section>
 
@@ -84,6 +88,8 @@ export default function Home() {
               ))}
           </div>
         </section>
+
+        <AboutSection />
       </main>
     </div>
   );
