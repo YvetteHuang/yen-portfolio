@@ -7,7 +7,7 @@ const displayFont = Source_Serif_4({
 
 const bodyFont = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const dsFonts = {
@@ -31,6 +31,8 @@ export const dsType = {
     "text-[0.9375rem] min-[720px]:text-[1.125rem] min-[1024px]:text-[1.25rem] min-[1440px]:text-[1.5rem] font-bold uppercase tracking-[0.08em]",
   body: "text-[1rem] leading-[1.65] min-[720px]:text-[1.125rem] min-[1024px]:text-[1.125rem] min-[1440px]:text-[1.5rem]",
   meta: "text-[0.75rem] min-[720px]:text-[0.8125rem] uppercase tracking-[0.2em]",
+  heroLede:
+    "text-[1.375rem] min-[720px]:text-[1.625rem] min-[1024px]:text-[2rem] font-light leading-[1.15]",
   emphasisHeading:
     "text-[1.75rem] min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem] leading-[1.4] tracking-tight",
   featureTitle:

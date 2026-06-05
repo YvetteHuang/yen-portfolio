@@ -95,7 +95,7 @@ export default function DesignSystemCaseStudy() {
           <div className="mx-auto flex h-[clamp(420px,48vw,640px)] w-full max-w-[1280px] items-end justify-center px-6 pt-16">
             <div className="relative h-[390px] w-full max-w-[760px] min-[720px]:h-[500px] min-[1024px]:h-[560px]">
               <Image
-                src="/homepage_ds.svg"
+                src="/homepage_ds.png"
                 alt="Design system case study hero visual"
                 fill
                 className="object-contain object-bottom drop-shadow-2xl"
