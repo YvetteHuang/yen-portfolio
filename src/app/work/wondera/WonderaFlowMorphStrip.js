@@ -1,7 +1,9 @@
 "use client";
 
 import { smoothstep01 } from "./wonderaFlowMorphMath";
-import { dsColors } from "@/lib/designSystem";
+import { dsCaseStudyType, dsColors, dsFonts } from "@/lib/designSystem";
+
+const cs = dsCaseStudyType;
 
 /**
  * Flow morph: Karaoke grows (also borrows mid-scroll width from Home via shared math),
@@ -19,7 +21,9 @@ const FLOW_HEIGHT = "3.35rem";
 
 function LaneLabel({ children }) {
   return (
-    <span className="mb-1 block text-center text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-zinc-400 min-[1024px]:text-[0.6875rem]">
+    <span
+      className={`${dsFonts.body.className} ${cs.annotationLabel} mb-1 block ${dsColors.text.mutedOnDark}`}
+    >
       {children}
     </span>
   );
@@ -54,7 +58,9 @@ function FlowBlock({ shape, children, style: outerStyle }) {
         ...outerStyle,
       }}
     >
-      <div className="flex h-full items-center justify-center px-2 py-2 text-center text-[0.65rem] font-medium leading-snug min-[1024px]:px-4 min-[1024px]:text-sm">
+      <div
+        className={`${dsFonts.body.className} ${cs.annotation} flex h-full items-center justify-center px-2 py-2 min-[1024px]:px-4`}
+      >
         {children}
       </div>
     </div>
