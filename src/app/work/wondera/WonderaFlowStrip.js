@@ -3,7 +3,9 @@
  * align with the blocks below. Chevron overlap uses a fixed notch width.
  */
 
-import { dsColors } from "@/lib/designSystem";
+import { dsCaseStudyType, dsColors, dsFonts } from "@/lib/designSystem";
+
+const cs = dsCaseStudyType;
 
 const FLOW = {
   fill: dsColors.wondera.flowFillHex,
@@ -15,7 +17,9 @@ const NOTCH = 14;
 
 function LaneLabel({ children }) {
   return (
-    <span className="mb-1 block text-center text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-zinc-400 min-[1024px]:text-[0.6875rem]">
+    <span
+      className={`${dsFonts.body.className} ${cs.annotationLabel} mb-1 block ${dsColors.text.mutedOnDark}`}
+    >
       {children}
     </span>
   );
@@ -55,7 +59,9 @@ function ChevronStep({ shape, overlap, children }) {
         color: FLOW.text,
       }}
     >
-      <div className="flex h-full min-h-[3.25rem] items-center justify-center px-2 py-2 text-center text-[0.65rem] font-medium leading-snug min-[1024px]:px-4 min-[1024px]:text-sm">
+      <div
+        className={`${dsFonts.body.className} ${cs.annotation} flex h-full min-h-[3.25rem] items-center justify-center px-2 py-2 min-[1024px]:px-4`}
+      >
         {children}
       </div>
     </div>
