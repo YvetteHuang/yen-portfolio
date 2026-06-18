@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   dsCaseStudyType,
+  dsColors,
   dsDivider,
   dsFonts,
   dsLayout,
@@ -26,13 +27,17 @@ const overviewParagraphs = [
 ];
 
 const caseBodyTextClass = dsCaseStudyType.body;
-const caseSubtitleClass = dsCaseStudyType.subtitle;
-const caseSectionEyebrowClass = dsCaseStudyType.sectionEyebrow;
+const caseHeroTitleClass = dsCaseStudyType.heroTitle;
+const caseSubtitleClass = `${dsCaseStudyType.subtitle} text-inherit`;
+const caseSectionEyebrowClass = `${dsFonts.body.className} ${dsType.meta} ${dsColors.caseStudy.eyebrow.stocknews} font-semibold`;
+const caseSectionTitleClass = `${dsFonts.display.className} ${dsCaseStudyType.sectionTitle} ${dsLayout.caseStudyContentMax}`;
+const caseStudySectionClass = dsLayout.caseStudySection;
+const caseStudySectionTightBottomClass = dsLayout.caseStudySectionTightBottom;
 const caseStudyDesktopFrameClass =
   "mx-auto box-border flex w-full max-w-[1280px] flex-col items-center justify-center gap-[10px] px-6 py-16 min-[1024px]:h-[685px] min-[1024px]:px-[85px] min-[1024px]:py-[86px]";
 const caseStudyDesktopContentClass =
   "mx-auto flex w-full max-w-[1052px] flex-col gap-[10px]";
-const caseStudyDisplayTitleClass = `${dsFonts.display.className} text-[clamp(2.25rem,5vw,3rem)] min-[1024px]:text-[3rem] min-[1024px]:leading-none font-bold tracking-tight`;
+const caseStudyCaptionClass = `${dsCaseStudyType.caption} mb-2`;
 
 function CaseStudyLockIcon() {
   return (
@@ -66,7 +71,7 @@ const insightItems = [
 function CaseStudyRow({ label, children, className = "" }) {
   return (
     <div
-      className={`grid gap-5 min-[1024px]:grid-cols-[194px_minmax(0,1fr)] min-[1024px]:gap-5 ${className}`}
+      className={`${dsLayout.caseStudySplit} ${className}`}
     >
       <h3 className={caseSubtitleClass}>{label}</h3>
       <div className={caseBodyTextClass}>{children}</div>
@@ -162,8 +167,6 @@ function BeforeAfterPair({
   alignPairBottom = false,
   matchImageHeight = false,
 }) {
-  const captionClass = "mb-2 text-center text-[0.95rem]";
-
   const gridClass = balanceCardSize
     ? "min-[720px]:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
     : "min-[720px]:grid-cols-2";
@@ -181,8 +184,8 @@ function BeforeAfterPair({
       >
         {!hideCaptions ? (
           <>
-            <figcaption className={`${captionClass} text-[#b83d3d]`}>Before</figcaption>
-            <figcaption className={`${captionClass} text-[#4ba871]`}>After</figcaption>
+            <figcaption className={`${caseStudyCaptionClass} ${dsColors.caseStudy.before}`}>Before</figcaption>
+            <figcaption className={`${caseStudyCaptionClass} ${dsColors.caseStudy.after}`}>After</figcaption>
           </>
         ) : null}
         <div className="min-w-0">
@@ -207,7 +210,7 @@ function BeforeAfterPair({
     <div className={`grid gap-6 ${gridItemsClass} ${gridClass} ${className}`}>
       <figure className="min-w-0">
         {!hideCaptions ? (
-          <figcaption className={`${captionClass} text-[#b83d3d]`}>Before</figcaption>
+          <figcaption className={`${caseStudyCaptionClass} ${dsColors.caseStudy.before}`}>Before</figcaption>
         ) : null}
         <div
           className={
@@ -224,7 +227,7 @@ function BeforeAfterPair({
       </figure>
       <figure className="min-w-0">
         {!hideCaptions ? (
-          <figcaption className={`${captionClass} text-[#4ba871]`}>After</figcaption>
+          <figcaption className={`${caseStudyCaptionClass} ${dsColors.caseStudy.after}`}>After</figcaption>
         ) : null}
         <div
           className={
@@ -402,7 +405,7 @@ function ImpactStat({ value, label, highlight }) {
   return (
     <div className="w-full max-w-[228px]">
       <p
-        className={`${dsFonts.body.className} text-[clamp(2.75rem,6vw,3.5rem)] font-bold leading-[1.2] tracking-tight text-black`}
+        className={`${dsFonts.display.className} ${dsCaseStudyType.statValue} text-black`}
       >
         {value}
       </p>
@@ -433,18 +436,21 @@ export default function StockNewsCaseStudy() {
     <main
       className={`${dsFonts.body.className} min-h-screen bg-black pb-24 text-zinc-100`}
     >
-      <section className="relative h-[clamp(360px,60vw,980px)] w-full overflow-hidden border-b border-white/10 bg-[linear-gradient(to_bottom_right,#87AEF6_0%,#5494DD_36%,#4271AA_62%,#1E2A43_100%)]">
-        <div className="absolute inset-x-0 top-20 z-20 flex min-h-[120px] items-center justify-center bg-white py-5 lg:top-24 lg:py-5">
+      <section
+        className={`${dsLayout.caseStudyHeroSection} ${dsLayout.caseStudyHeroHeight} bg-[linear-gradient(to_bottom_right,#87AEF6_0%,#5494DD_36%,#4271AA_62%,#1E2A43_100%)]`}
+      >
+        <div className={dsLayout.caseStudyHeroNavSpacer} aria-hidden="true" />
+        <div className={`${dsLayout.caseStudyHeroTitleBar} bg-white`}>
           <h1
-            className={`${dsFonts.display.className} px-6 text-center text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-none tracking-tight text-black`}
+            className={`${dsFonts.display.className} ${caseHeroTitleClass} ${dsLayout.caseStudyHeroTitlePadding} text-center text-black`}
           >
             StockNews.ai
           </h1>
         </div>
-        <div className="relative mx-auto flex h-full w-full max-w-[1800px] items-end justify-center px-2 pb-1 pt-28 min-[720px]:px-4 min-[720px]:pt-32 min-[1024px]:pb-3 min-[1024px]:pt-36">
-          <div className="relative h-[324px] w-full max-w-[1488px] min-[720px]:h-[432px] min-[1024px]:h-[600px]">
+        <div className={dsLayout.caseStudyHeroMedia}>
+          <div className="relative h-[389px] w-full max-w-[1786px] min-[720px]:h-[518px] min-[1024px]:h-[720px]">
             <Image
-              src="/homepage_stocknews.svg"
+              src="/homepage_stocknews.png"
               alt="StockNews case study hero visual"
               fill
               className="object-contain p-0"
@@ -455,12 +461,10 @@ export default function StockNewsCaseStudy() {
       </section>
 
       <section id="overview" className="scroll-mt-28 bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:gap-10 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
             <p className={caseSectionEyebrowClass}>Overview</p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[1052px] text-[clamp(2.4rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               Empowering Investors to Scan Fast, Search Deep, Act Confident
             </h2>
           </header>
@@ -509,12 +513,10 @@ export default function StockNewsCaseStudy() {
       </section>
 
       <section id="context" className="scroll-mt-28 bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 pb-16 min-[720px]:px-12 min-[1024px]:gap-10 min-[1024px]:px-[114px] min-[1024px]:pb-20">
+        <div className={caseStudySectionTightBottomClass}>
           <header className="space-y-4">
             <p className={caseSectionEyebrowClass}>Context</p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[1052px] text-[clamp(2.4rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               Redesigning for Value, Not Just Aesthetics
             </h2>
           </header>
@@ -616,12 +618,10 @@ export default function StockNewsCaseStudy() {
       </section>
 
       <section id="feature-01" className="scroll-mt-28 bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 pb-16 min-[720px]:px-12 min-[1024px]:gap-10 min-[1024px]:px-[114px] min-[1024px]:pb-20">
+        <div className={caseStudySectionTightBottomClass}>
           <header className="space-y-4">
             <p className={caseSectionEyebrowClass}>Feature 01</p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[1052px] text-[clamp(2.4rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               AI NewsCard: Making Market Signals Impossible to Miss
             </h2>
           </header>
@@ -664,7 +664,7 @@ export default function StockNewsCaseStudy() {
               </p>
             </CaseStudyRow>
 
-            <div className="grid gap-5 min-[1024px]:grid-cols-[194px_minmax(0,1fr)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>Card Level</h3>
               <div className="space-y-12">
                 {featureOneCardLevelItems.map((item) => (
@@ -690,7 +690,7 @@ export default function StockNewsCaseStudy() {
               </div>
             </div>
 
-            <div className="grid gap-5 min-[1024px]:grid-cols-[194px_minmax(0,1fr)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>Navigation Level</h3>
               <div className="space-y-7">
                 <p>
@@ -749,7 +749,7 @@ export default function StockNewsCaseStudy() {
       <section id="impact" className="scroll-mt-28 bg-white text-black">
         <div className={caseStudyDesktopFrameClass}>
           <div className={caseStudyDesktopContentClass}>
-            <h2 className={caseStudyDisplayTitleClass}>Impact</h2>
+            <h2 className={caseSectionTitleClass}>Impact</h2>
 
             <div className="flex flex-col gap-12 min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-10">
             <div className="max-w-[475px] space-y-3">
@@ -806,7 +806,7 @@ export default function StockNewsCaseStudy() {
       >
         <div className={caseStudyDesktopFrameClass}>
           <div className={caseStudyDesktopContentClass}>
-            <h2 className={`${caseStudyDisplayTitleClass} text-white`}>
+            <h2 className={`${caseSectionTitleClass} text-white`}>
               From passive information to actionable advice.
             </h2>
             <p className={`${caseBodyTextClass} text-white`}>
@@ -825,12 +825,10 @@ export default function StockNewsCaseStudy() {
       </section>
 
       <section id="feature-02" className="scroll-mt-28 bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:gap-10 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
             <p className={caseSectionEyebrowClass}>Feature 02</p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[1052px] text-[clamp(2.4rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               <span className="block">
                 <CaseStudyLockIcon />
                 Smart Search:
@@ -874,12 +872,10 @@ export default function StockNewsCaseStudy() {
       </section>
 
       <section id="feature-03" className="scroll-mt-28 bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:gap-10 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
             <p className={caseSectionEyebrowClass}>Feature 03</p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[1052px] text-[clamp(2.4rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               <span className="block">
                 <CaseStudyLockIcon />
                 Personalized Dashboard:

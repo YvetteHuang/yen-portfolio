@@ -42,21 +42,56 @@ export const dsType = {
     "text-[2.5rem] min-[1440px]:text-[3.25rem] font-semibold leading-none",
 };
 
-// Case study body copy — explicit size/line-height pairs per breakpoint (Figma Body 01 at 720px+).
-// Mobile: 16/24 · Tablet & desktop: 18/28
+// Case study typography — size/weight only; pair with dsColors.text.* for color.
+// Mobile body: 16/24 · Tablet+: 18/28
 export const dsCaseStudyType = {
+  heroTitle:
+    "text-[clamp(2.4rem,7vw,4rem)] min-[1024px]:text-[4.25rem] font-semibold leading-tight tracking-tight",
+  sectionTitle:
+    "text-[clamp(1.875rem,8vw,2.5rem)] min-[720px]:text-[2.75rem] min-[1024px]:text-[3rem] font-semibold leading-[1.14] tracking-tight",
+  // Eyebrow: dsType.meta + dsColors.caseStudy.eyebrow.{case} + font-semibold (not sectionEyebrow below).
   body:
     "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7",
   subtitle:
     "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7 font-bold uppercase",
-  sectionEyebrow: "text-base font-bold uppercase",
+  featureTitle:
+    "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7 font-bold",
+  pullQuote:
+    "text-[1.75rem] min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem] font-semibold leading-[1.4] tracking-tight",
+  blockquote:
+    "text-[clamp(2rem,5vw,2.25rem)] font-bold italic leading-[1.25] tracking-tight",
+  statValue:
+    "text-[2.5rem] min-[1440px]:text-[3.25rem] font-semibold leading-none",
+  caption: "text-center text-[0.95rem] font-normal leading-snug",
+  annotationLabel:
+    "text-center text-xs font-semibold uppercase tracking-[0.14em] min-[1024px]:text-sm",
+  annotation:
+    "text-center text-xs font-medium leading-snug min-[1024px]:text-base",
 };
 
 export const dsLayout = {
   pageFrame:
-    "mx-auto w-full max-w-[1220px] px-6 min-[720px]:px-10 min-[1024px]:px-12 min-[1440px]:max-w-[1320px]",
+    "mx-auto w-full max-w-[1280px] px-6 min-[720px]:px-12 min-[1024px]:px-[114px]",
+  caseStudyContentMax: "max-w-[1052px]",
   contentMax: "max-w-4xl",
   textMax: "max-w-3xl",
+  caseStudySplit:
+    "grid gap-6 min-[1024px]:grid-cols-[194px_minmax(0,1fr)] min-[1024px]:gap-10",
+  caseStudySection:
+    "mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:gap-10 min-[1024px]:px-[114px] min-[1024px]:py-20",
+  caseStudySectionTightBottom:
+    "mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 pb-16 pt-16 min-[720px]:px-12 min-[1024px]:gap-10 min-[1024px]:px-[114px] min-[1024px]:pb-20 min-[1024px]:pt-20",
+  caseStudySectionCompact:
+    "mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-10 min-[720px]:px-12 min-[1024px]:px-[114px]",
+  caseStudyHeroSection:
+    "relative flex w-full flex-col overflow-hidden border-b border-white/10",
+  caseStudyHeroHeight: "min-h-[clamp(360px,60vw,980px)]",
+  caseStudyHeroNavSpacer: "pointer-events-none h-20 shrink-0 lg:h-24",
+  caseStudyHeroTitleBar:
+    "relative z-20 flex w-full shrink-0 justify-center px-6",
+  caseStudyHeroTitlePadding: "py-[0.42em]",
+  caseStudyHeroMedia:
+    "relative mx-auto flex min-h-0 w-full max-w-[1800px] flex-1 items-end justify-center px-2 pb-1 min-[720px]:px-4 min-[1024px]:pb-3",
 };
 
 export const dsDivider = {
@@ -72,6 +107,7 @@ export const dsSpacing = {
   sectionGap: "space-y-20",
   sectionInnerTight: "space-y-6",
   sectionInner: "space-y-8",
+  sectionTopSpaced: "pt-10 min-[1024px]:pt-12",
   paragraphGap: "space-y-5",
   cardPadding: "p-6 min-[1024px]:p-8",
   insetPadding: "p-5",
@@ -99,6 +135,19 @@ export const dsColors = {
     secondaryOnDark: "text-zinc-200",
     tertiaryOnDark: "text-zinc-300",
     mutedOnDark: "text-zinc-400",
+    primaryOnLight: "text-zinc-900",
+    secondaryOnLight: "text-zinc-700",
+    tertiaryOnLight: "text-zinc-500",
+    mutedOnLight: "text-zinc-400",
+  },
+  caseStudy: {
+    before: "text-[#b83d3d]",
+    after: "text-[#4ba871]",
+    eyebrow: {
+      wondera: "text-violet-300",
+      stocknews: "text-[#4271AA]",
+      designSystem: "text-[#096AFA]",
+    },
   },
   border: {
     subtleOnDark: "border-white/10",

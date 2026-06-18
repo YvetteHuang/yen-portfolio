@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import TrackedLink from "@/components/TrackedLink";
 import Tag from "@/components/Tag";
 import { dsFonts } from "@/lib/designSystem";
 
@@ -90,12 +90,13 @@ export default function ProjectCard({
 
   if (href) {
     return (
-      <Link
+      <TrackedLink
         href={href}
+        title={title}
         className="block outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
       >
         {inner}
-      </Link>
+      </TrackedLink>
     );
   }
 

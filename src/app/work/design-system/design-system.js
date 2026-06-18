@@ -1,12 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  dsCaseStudyType,
+  dsColors,
   dsDivider,
   dsFonts,
   dsLayout,
   dsSpacing,
   dsType,
 } from "@/lib/designSystem";
+
+const caseHeroTitleClass = dsCaseStudyType.heroTitle;
+const caseBodyTextClass = dsCaseStudyType.body;
+const caseSubtitleClass = `${dsCaseStudyType.subtitle} text-inherit`;
+const caseSectionEyebrowClass = `${dsFonts.body.className} ${dsType.meta} ${dsColors.caseStudy.eyebrow.designSystem} font-semibold`;
+const caseSectionTitleClass = `${dsFonts.display.className} ${dsCaseStudyType.sectionTitle} ${dsLayout.caseStudyContentMax}`;
+const caseStudySectionClass = dsLayout.caseStudySection;
+const caseStudySectionCompactClass = dsLayout.caseStudySectionCompact;
+const caseStudyCaptionClass = `${dsCaseStudyType.caption} mb-2`;
 
 const overviewDetails = [
   { label: "MY ROLE", value: "Founding Designer" },
@@ -74,45 +85,40 @@ const reflectionItems = [
   },
 ];
 
-const caseBodyTextClass = `${dsType.body} min-[1440px]:text-[1.125rem]`;
-const caseSubtitleClass = `${caseBodyTextClass} font-bold uppercase leading-tight`;
-
 export default function DesignSystemCaseStudy() {
   return (
     <main
       className={`${dsFonts.body.className} min-h-screen bg-black pb-24 text-zinc-100`}
     >
-      <section className="w-full overflow-hidden border-b border-white/10">
-        <div className="h-20 bg-[linear-gradient(100deg,#1C4481_0%,#096AFA_56%,#2DC3D8_100%)] min-[1024px]:h-24" />
-        <div className="bg-white px-6 py-7 min-[720px]:py-8">
+      <section
+        className={`${dsLayout.caseStudyHeroSection} ${dsLayout.caseStudyHeroHeight} bg-[linear-gradient(100deg,#26314F_0%,#096AFA_56%,#2DBFDC_100%)]`}
+      >
+        <div className={dsLayout.caseStudyHeroNavSpacer} aria-hidden="true" />
+        <div className={`${dsLayout.caseStudyHeroTitleBar} bg-white`}>
           <h1
-            className={`${dsFonts.display.className} mx-auto max-w-[1100px] text-center text-[clamp(2.4rem,7vw,4rem)] font-semibold leading-tight tracking-tight text-black min-[1024px]:text-[4.25rem]`}
+            className={`${dsFonts.display.className} ${caseHeroTitleClass} ${dsLayout.caseStudyHeroTitlePadding} text-center text-black`}
           >
             Design System for StockNews.ai
           </h1>
         </div>
-        <div className="bg-[linear-gradient(100deg,#26314F_0%,#096AFA_56%,#2DBFDC_100%)]">
-          <div className="mx-auto flex h-[clamp(420px,48vw,640px)] w-full max-w-[1280px] items-end justify-center px-6 pt-16">
-            <div className="relative h-[390px] w-full max-w-[760px] min-[720px]:h-[500px] min-[1024px]:h-[560px]">
-              <Image
-                src="/homepage_ds.png"
-                alt="Design system case study hero visual"
-                fill
-                className="object-contain object-bottom drop-shadow-2xl"
-                priority
-              />
-            </div>
+        <div className={dsLayout.caseStudyHeroMedia}>
+          <div className="relative h-[324px] w-full max-w-[760px] min-[720px]:h-[432px] min-[1024px]:h-[560px]">
+            <Image
+              src="/homepage_ds.png"
+              alt="Design system case study hero visual"
+              fill
+              className="object-contain object-bottom drop-shadow-2xl"
+              priority
+            />
           </div>
         </div>
       </section>
 
       <section id="overview" className="bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
-            <p className="text-base font-bold uppercase">Overview</p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[1116px] text-[clamp(2.4rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <p className={caseSectionEyebrowClass}>Overview</p>
+            <h2 className={caseSectionTitleClass}>
               Scaling Without Slowing Down
             </h2>
           </header>
@@ -156,17 +162,15 @@ export default function DesignSystemCaseStudy() {
       </section>
 
       <section id="context" className="bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
-            <p className="text-base font-bold uppercase">Context</p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[980px] text-[clamp(2.35rem,7vw,3rem)] font-bold leading-[1.1] tracking-tight`}
-            >
+            <p className={caseSectionEyebrowClass}>Context</p>
+            <h2 className={caseSectionTitleClass}>
               We Were Building a Product With No Design Foundation
             </h2>
           </header>
 
-          <div className="grid gap-6 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5 min-[1024px]:self-end">
+          <div className={`${dsLayout.caseStudySplit} min-[1024px]:self-end`}>
             <h3 className={caseSubtitleClass}>
               Challenge
             </h3>
@@ -219,7 +223,7 @@ export default function DesignSystemCaseStudy() {
             </figure>
           </div>
 
-          <div className="grid gap-6 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5 min-[1024px]:self-end">
+          <div className={`${dsLayout.caseStudySplit} min-[1024px]:self-end`}>
             <h3 className={caseSubtitleClass}>
               Strategy
             </h3>
@@ -244,20 +248,18 @@ export default function DesignSystemCaseStudy() {
       </section>
 
       <section id="phase-01" className="bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
-            <p className="text-base font-bold uppercase">
+            <p className={caseSectionEyebrowClass}>
               Phase 01 - Audit/ Style/ Atom
             </p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[980px] text-[clamp(2.35rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               A Lite Version, Built in Parallel
             </h2>
           </header>
 
           <div className="flex flex-col gap-6 min-[1024px]:ml-auto min-[1024px]:w-[1052px]">
-            <div className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>
                 Problem
               </h3>
@@ -275,7 +277,7 @@ export default function DesignSystemCaseStudy() {
               </div>
             </div>
 
-            <div className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>
                 Decision
               </h3>
@@ -294,7 +296,7 @@ export default function DesignSystemCaseStudy() {
             </div>
           </div>
 
-          <div className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5">
+          <div className={dsLayout.caseStudySplit}>
             <h3 className={caseSubtitleClass}>
               What I Built
             </h3>
@@ -321,20 +323,18 @@ export default function DesignSystemCaseStudy() {
       </section>
 
       <section id="phase-02" className="bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
-            <p className="text-base font-bold uppercase">
+            <p className={caseSectionEyebrowClass}>
               Phase 02 - Organisms/ Documentation
             </p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[980px] text-[clamp(2.35rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               The System Grows With the Product
             </h2>
           </header>
 
           <div className="flex flex-col gap-6 min-[1024px]:ml-auto min-[1024px]:w-[1052px]">
-            <div className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>
                 Trigger
               </h3>
@@ -353,7 +353,7 @@ export default function DesignSystemCaseStudy() {
               </div>
             </div>
 
-            <div className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>
                 Approach
               </h3>
@@ -388,20 +388,18 @@ export default function DesignSystemCaseStudy() {
       </section>
 
       <section id="phase-03" className="bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:px-[114px] min-[1024px]:py-20">
+        <div className={caseStudySectionClass}>
           <header className="space-y-4">
-            <p className="text-base font-bold uppercase">
+            <p className={caseSectionEyebrowClass}>
               Phase 03 - CSS System/ Storybook
             </p>
-            <h2
-              className={`${dsFonts.display.className} max-w-[980px] text-[clamp(2.35rem,7vw,3rem)] font-bold leading-[1.1] tracking-tight`}
-            >
+            <h2 className={caseSectionTitleClass}>
               When I Realized the System Wasn&apos;t Crossing the Line
             </h2>
           </header>
 
           <div className="flex flex-col gap-6 min-[1024px]:ml-auto min-[1024px]:w-[1052px]">
-            <div className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>
                 Problem
               </h3>
@@ -448,7 +446,7 @@ export default function DesignSystemCaseStudy() {
           </div>
 
           <div className="flex flex-col gap-6 min-[1024px]:ml-auto min-[1024px]:w-[1052px]">
-            <div className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5">
+            <div className={dsLayout.caseStudySplit}>
               <h3 className={caseSubtitleClass}>
                 Decision
               </h3>
@@ -496,12 +494,8 @@ export default function DesignSystemCaseStudy() {
       </section>
 
       <section id="impact" className="bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-16 min-[720px]:px-12 min-[1024px]:px-[114px] min-[1024px]:py-20">
-          <h2
-            className={`${dsFonts.display.className} text-[clamp(2.35rem,7vw,3rem)] font-bold leading-none tracking-tight`}
-          >
-            Impact
-          </h2>
+        <div className={caseStudySectionClass}>
+          <h2 className={caseSectionTitleClass}>Impact</h2>
 
           <div className="grid gap-4 min-[720px]:grid-cols-3">
             {impactStats.map((stat) => (
@@ -509,9 +503,7 @@ export default function DesignSystemCaseStudy() {
                 key={stat.value}
                 className="rounded-lg bg-[#1476FF] px-6 py-7 text-white"
               >
-                <p className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-none">
-                  {stat.value}
-                </p>
+                <p className={dsCaseStudyType.statValue}>{stat.value}</p>
                 <p className="mt-4 text-base leading-snug">{stat.description}</p>
               </article>
             ))}
@@ -519,7 +511,9 @@ export default function DesignSystemCaseStudy() {
 
           <div className="grid gap-6 min-[1024px]:grid-cols-2">
             <figure>
-              <figcaption className="mb-2 text-center text-sm text-[#b83d3d]">
+              <figcaption
+                className={`${caseStudyCaptionClass} ${dsColors.caseStudy.before}`}
+              >
                 Landing Page Before DS
               </figcaption>
               <Image
@@ -531,7 +525,9 @@ export default function DesignSystemCaseStudy() {
               />
             </figure>
             <figure>
-              <figcaption className="mb-2 text-center text-sm text-[#4ba871]">
+              <figcaption
+                className={`${caseStudyCaptionClass} ${dsColors.caseStudy.after}`}
+              >
                 Landing Page After DS
               </figcaption>
               <Image
@@ -547,11 +543,11 @@ export default function DesignSystemCaseStudy() {
       </section>
 
       <section id="reflection" className="bg-white text-black">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 py-10 min-[720px]:px-12 min-[1024px]:px-[114px]">
+        <div className={caseStudySectionCompactClass}>
           <header className="space-y-4">
-            <p className="text-base font-bold">Reflection</p>
+            <p className={caseSectionEyebrowClass}>Reflection</p>
             <blockquote
-              className={`${dsFonts.display.className} max-w-[1052px] text-[clamp(2rem,5vw,2.25rem)] font-bold italic leading-[1.25] tracking-tight`}
+              className={`${dsFonts.display.className} ${dsCaseStudyType.blockquote} ${dsLayout.caseStudyContentMax}`}
             >
               "A design system isn&apos;t a deliverable. It&apos;s an ongoing
               conversation between design intent and engineering reality"
@@ -562,7 +558,7 @@ export default function DesignSystemCaseStudy() {
             {reflectionItems.map((item) => (
               <div
                 key={item.label}
-                className="grid gap-4 min-[1024px]:grid-cols-[194px_minmax(0,838px)] min-[1024px]:gap-5"
+                className={dsLayout.caseStudySplit}
               >
                 <h3 className={caseSubtitleClass}>
                   {item.label}
