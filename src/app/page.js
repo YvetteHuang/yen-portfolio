@@ -1,7 +1,7 @@
 import AboutSection from "@/components/AboutSection";
+import BackgroundEmitter from "@/components/BackgroundEmitter";
+import HeroSection from "@/components/HeroSection";
 import ProjectCard from "@/components/ProjectCard";
-import { dsFonts, dsType } from "@/lib/designSystem";
-
 
 const projects = [
   {
@@ -59,27 +59,13 @@ const projects = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black font-sans text-zinc-50">
-      <main className="mx-auto w-full max-w-6xl px-6 pb-24 pt-28 md:px-10 md:pt-32">
-        <section className="mb-20 md:mb-28" aria-labelledby="intro-heading">
-          <h1
-            id="intro-heading"
-            className={`${dsFonts.display.className} ${dsType.h1} max-w-4xl font-semibold tracking-tight text-white`}
-          >
-            Hi, I&apos;m Yen.
-          </h1>
-          <p
-            className={`${dsFonts.body.className} ${dsType.heroLede} mt-2 text-white/90`}
-          >
-            Product Designer who thinks in systems,
-            <br />
-            sweats the details, and never stops asking why.
-            <br />
-            Currently focused on AI products and fintech.
-          </p>
-        </section>
+    <div className="relative min-h-screen bg-black font-sans text-zinc-50">
+      <BackgroundEmitter />
+      <main className="relative z-10 pb-24">
+        <HeroSection />
 
-        <section id="work" aria-labelledby="work-heading" className="scroll-mt-28">
+        <div className="mx-auto w-full max-w-[1280px] px-6 md:px-10">
+        <section id="work" aria-labelledby="work-heading" className="scroll-mt-28 pt-4 md:pt-8">
           <h2 id="work-heading" className="sr-only">
             Selected work
           </h2>
@@ -93,6 +79,7 @@ export default function Home() {
         </section>
 
         <AboutSection />
+        </div>
       </main>
     </div>
   );
