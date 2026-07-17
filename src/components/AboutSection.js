@@ -13,7 +13,7 @@ export default function AboutSection() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="scroll-mt-28 mt-24"
+      className="scroll-mt-28 mt-10 md:mt-12"
     >
       <div className="flex flex-col items-start gap-8 md:gap-12 lg:flex-row lg:gap-[7.5rem]">
         <h2
