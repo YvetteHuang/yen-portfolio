@@ -53,12 +53,12 @@ export default function HeroSection() {
                 <br />
                 sweats the details, and never stops asking why.
                 <br />
-                Currently focused on AI products and fintech.
+                Currently focused on AI products and complex system.
               </span>
               <span className="hidden min-[1024px]:inline">
                 Product Designer who thinks in systems, sweats the details, and
                 never stops asking why. Currently focused on AI products and
-                fintech.
+                complex system.
               </span>
             </p>
           </div>

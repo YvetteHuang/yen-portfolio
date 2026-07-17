@@ -1,6 +1,7 @@
 import AboutSection from "@/components/AboutSection";
 import BackgroundEmitter from "@/components/BackgroundEmitter";
 import HeroSection from "@/components/HeroSection";
+import MoreWorkSection from "@/components/MoreWorkSection";
 import ProjectCard from "@/components/ProjectCard";
 
 const projects = [
@@ -43,18 +44,6 @@ const projects = [
       "md:scale-[0.85] md:group-hover:scale-100 md:-translate-x-6 lg:-translate-x-12",
     href: "/work/wondera",
   },
-  {
-    title: "Gizmu",
-    tags: ["UX Design", "AR", "Music Game"],
-    description:
-      "An AR mobile interactive game for everyone creating music based on daily objects.",
-    gradientClassName: "bg-[linear-gradient(to_bottom_right,#FF96D5_0%,#7A4A7C_45%,#2B2145_90%)]",
-    imageSrc: "/homepage_gizmu.png",
-    imageAlt: "Gizmu AR app mockup",
-    imageRight: false,
-    href: "#",
-    hidden: true,
-  },
 ];
 
 export default function Home() {
@@ -70,14 +59,13 @@ export default function Home() {
             Selected work
           </h2>
           <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
-            {projects
-              .filter((project) => !project.hidden)
-              .map((project) => (
-                <ProjectCard key={project.title} {...project} />
-              ))}
+            {projects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
           </div>
         </section>
 
+        <MoreWorkSection />
         <AboutSection />
         </div>
       </main>
