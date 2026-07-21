@@ -24,7 +24,7 @@ const moreWorkProjects = [
     imageAlt: "NYU Langone research project mockup",
     mediaClassName:
       "bg-[linear-gradient(47.4deg,#382673_61%,#6A24A2_109%)]",
-    imageClassName: "object-contain object-bottom scale-[1.02]",
+    imageClassName: "object-contain object-center scale-110 -translate-y-0.5",
   },
   {
     title: "jlin CIS",
