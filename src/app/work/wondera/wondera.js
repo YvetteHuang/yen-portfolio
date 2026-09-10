@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  dsCaseStudyType,
   dsColors,
   dsFonts,
   dsLayout,
@@ -13,9 +12,9 @@ import {
 import { WonderaSolutionFlowScroll } from "./WonderaSolutionFlowScroll";
 import { WonderaSectionToc } from "./WonderaSectionToc";
 
-const cs = dsCaseStudyType;
-const wonderaEyebrowClass = `${dsType.meta} ${dsColors.wondera.eyebrow} font-semibold`;
-const wonderaSubtitleClass = `${cs.subtitle} ${dsColors.text.secondaryOnDark}`;
+const cs = dsType;
+const wonderaEyebrowClass = `${dsType.eyebrow} ${dsColors.wondera.eyebrow} font-semibold`;
+const wonderaSubtitleClass = `${cs.subheading} ${dsColors.text.secondaryOnDark}`;
 const wonderaSectionTitleClass = `${dsFonts.display.className} ${cs.sectionTitle} ${dsColors.text.primaryOnDark}`;
 const wonderaOverviewLabelClass = `${cs.body} font-bold ${dsColors.text.primaryOnDark}`;
 const wonderaBodyStackClass = `${dsFonts.body.className} space-y-7 ${dsColors.text.secondaryOnDark}`;
@@ -110,7 +109,7 @@ export default function WonderaCaseStudy() {
         <div className={dsLayout.caseStudyHeroNavSpacer} aria-hidden="true" />
         <div className={`${dsLayout.caseStudyHeroTitleBar} bg-black`}>
           <h1
-            className={`${dsFonts.display.className} ${dsCaseStudyType.heroTitle} ${dsLayout.caseStudyHeroTitlePadding} text-center text-white`}
+            className={`${dsFonts.display.className} ${dsType.heroTitle} ${dsLayout.caseStudyHeroTitlePadding} text-center text-white`}
           >
             Wondera
           </h1>
@@ -416,7 +415,7 @@ export default function WonderaCaseStudy() {
           >
             <div className={`${dsLayout.pageFrame}`}>
               <p
-                className={`${dsFonts.display.className} ${cs.pullQuote} max-w-4xl text-left`}
+                className={`${dsFonts.display.className} ${cs.quote} max-w-4xl text-left`}
               >
                 How Might We enhance <span className="font-extrabold">engagement</span> and{" "}
                 <span className="font-extrabold">ease of management</span> for AI voice training
@@ -832,7 +831,7 @@ export default function WonderaCaseStudy() {
           >
             Back to homepage
           </Link>
-          <p className={`${dsType.meta} text-zinc-500`}>
+          <p className={`${dsType.eyebrow} text-zinc-500`}>
             Wondera Case Study
           </p>
         </section>
