@@ -1,9 +1,9 @@
 "use client";
 
 import { smoothstep01 } from "./wonderaFlowMorphMath";
-import { dsCaseStudyType, dsColors, dsFonts } from "@/lib/designSystem";
+import { dsColors, dsFonts, dsType } from "@/lib/designSystem";
 
-const cs = dsCaseStudyType;
+const cs = dsType;
 
 /**
  * Flow morph: Karaoke grows (also borrows mid-scroll width from Home via shared math),
