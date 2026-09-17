@@ -57,3 +57,11 @@ body {
   mask-composite: exclude;
   pointer-events: none;
 }
+
+.react-pdf-page-frame .react-pdf__Page {
+  background: transparent !important;
+}
+
+.react-pdf-page-frame .react-pdf__Page__canvas {
+  display: block;
+}

@@ -1,5 +1,10 @@
 import Image from "next/image";
+import ClipLoopVideo from "@/components/ClipLoopVideo";
+import TrackedLink from "@/components/TrackedLink";
 import { dsFonts } from "@/lib/designSystem";
+
+const designLinkClassName =
+  "flex min-h-0 flex-col outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
 function ProjectTags({ tags }) {
   return (
@@ -16,18 +21,45 @@ function ProjectTags({ tags }) {
   );
 }
 
-export function DesignFeaturedCard({ project }) {
+function wrapDesignCard(project, className, inner) {
+  if (!project.href) {
+    return inner;
+  }
+
   return (
+    <TrackedLink
+      href={project.href}
+      title={project.title}
+      location="design"
+      className={`${designLinkClassName} ${className}`.trim()}
+    >
+      {inner}
+    </TrackedLink>
+  );
+}
+
+export function DesignFeaturedCard({ project }) {
+  const inner = (
     <article className="flex flex-col">
       <div className="relative aspect-[2/1] w-full overflow-hidden">
-        <Image
-          src={project.imageSrc}
-          alt={project.imageAlt}
-          fill
-          priority
-          className="object-cover"
-          sizes="(max-width: 1280px) 100vw, 1280px"
-        />
+        {project.videoSrc ? (
+          <ClipLoopVideo
+            src={project.videoSrc}
+            poster={project.imageSrc}
+            start={project.videoStart}
+            end={project.videoEnd}
+            alt={project.imageAlt}
+          />
+        ) : (
+          <Image
+            src={project.imageSrc}
+            alt={project.imageAlt}
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 1280px) 100vw, 1280px"
+          />
+        )}
         {project.badge ? (
           <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-black/70 px-2.5 py-1 backdrop-blur-sm">
             <span className="size-1.5 rounded-full bg-[#0089FF]" aria-hidden />
@@ -57,19 +89,18 @@ export function DesignFeaturedCard({ project }) {
       </div>
     </article>
   );
+
+  return wrapDesignCard(project, "", inner);
 }
 
 export function DesignMasonryCard({ project }) {
   const isWide = project.layout === "wide";
+  const spanClassName = isWide
+    ? "min-[720px]:col-span-2 min-[720px]:row-span-2"
+    : "";
 
-  return (
-    <article
-      className={`flex min-h-0 flex-col ${
-        isWide
-          ? "min-[720px]:col-span-2 min-[720px]:row-span-2"
-          : ""
-      }`}
-    >
+  const inner = (
+    <article className={`flex min-h-0 flex-col ${project.href ? "h-full" : spanClassName}`}>
       <div
         className={`relative min-h-[12.5rem] overflow-hidden ${
           isWide
@@ -107,4 +138,6 @@ export function DesignMasonryCard({ project }) {
       </div>
     </article>
   );
+
+  return wrapDesignCard(project, spanClassName, inner);
 }

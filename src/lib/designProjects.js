@@ -1,3 +1,5 @@
+const DESIGN_PORTFOLIO_VIEWER = "/design/portfolio";
+
 export const designPageHero = {
   title: "Same Belief in Humanity, Different Materials as Medium",
   lede: "An ongoing exploration of the relationship between mind, body, and the outer world — through different mediums: Architecture, Generative Design, Fabrication, Interaction Design, Virtual Production.",
@@ -15,9 +17,13 @@ export const designProjects = [
     imageSrc: "/design/metamorphosis.png",
     imageAlt:
       "Dancer in a concrete studio with a Kinect-generated sculptural overlay",
+    videoSrc: "/video/metamorphosis-cover-web-optimized.mp4",
+    videoStart: 34,
+    videoEnd: 115,
     featured: true,
     layout: "featured",
     badge: "Motion",
+    href: `${DESIGN_PORTFOLIO_VIEWER}?from=4&to=9&paper=white`,
   },
   {
     slug: "seizing-the-ever-changing-light",
@@ -32,6 +38,7 @@ export const designProjects = [
       "Colorized aerial visualization of a Tainan street as light and form data",
     featured: false,
     layout: "wide",
+    href: `${DESIGN_PORTFOLIO_VIEWER}?from=10&to=14`,
   },
   {
     slug: "seeds-in-the-wind",
@@ -82,6 +89,7 @@ export const designProjects = [
       "Person interacting with dual particle projections in a warehouse gallery",
     featured: false,
     layout: "wide",
+    href: `${DESIGN_PORTFOLIO_VIEWER}?from=15&to=18`,
   },
   {
     slug: "virtual-nyu-lounge",
