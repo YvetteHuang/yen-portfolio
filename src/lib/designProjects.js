@@ -1,0 +1,149 @@
+const DESIGN_PORTFOLIO_VIEWER = "/design/portfolio";
+
+export const designPageHero = {
+  title: "Same Belief in Humanity, Different Materials as Medium",
+  lede: "An ongoing exploration of the relationship between mind, body, and the outer world — through different mediums: Architecture, Generative Design, Fabrication, Interaction Design, Virtual Production.",
+};
+
+export const designProjects = [
+  {
+    slug: "metamorphosis",
+    title: "Metamorphosis",
+    tags: ["Generative Design", "Interaction Design", "Fabrication"],
+    summary:
+      "A Kinect-driven sculpture that translates a dancer's motion into a fabricable form, from paper studies to a built system.",
+    year: "2021",
+    tools: "Rhino · Grasshopper · Kinect",
+    imageSrc: "/design/metamorphosis.png",
+    imageAlt:
+      "Dancer in a concrete studio with a Kinect-generated sculptural overlay",
+    videoSrc: "/video/metamorphosis-cover-web-optimized.mp4",
+    videoStart: 34,
+    videoEnd: 115,
+    featured: true,
+    layout: "featured",
+    href: `${DESIGN_PORTFOLIO_VIEWER}?from=4&to=9&paper=white`,
+  },
+  {
+    slug: "seizing-the-ever-changing-light",
+    title: "Seizing the Ever-Changing Light",
+    tags: ["Architecture", "Generative Design"],
+    summary:
+      "Translating the walking experience of a Tainan street into light-and-color data visualizations through Processing, then reimagining that data as an underground observatory space beneath the road.",
+    year: "2019",
+    tools: "Processing · Illustrator · AutoCAD",
+    imageSrc: "/design/seizing-the-ever-changing-light.jpg",
+    imageAlt:
+      "Colorized aerial visualization of a Tainan street as light and form data",
+    featured: false,
+    layout: "wide",
+    href: `${DESIGN_PORTFOLIO_VIEWER}?from=10&to=14`,
+  },
+  {
+    slug: "seeds-in-the-wind",
+    title: "Seeds in the Wind",
+    tags: ["Generative Design", "Interaction Design"],
+    summary: "",
+    year: "2021",
+    tools: "Processing · Kinect",
+    imageSrc: "/design/seeds-in-the-wind.png",
+    imageAlt: "Silhouette standing in front of a generative circular-pattern wall",
+    featured: false,
+    layout: "default",
+  },
+  {
+    slug: "light-painting",
+    title: "Light Painting",
+    tags: ["Interaction Design", "Fabrication"],
+    summary: "",
+    year: "2020",
+    tools: "Arduino · IR · Laser cutting",
+    imageSrc: "/design/light-painting.png",
+    imageAlt: "Laser-cut colored acrylic panels catching sunlight",
+    featured: false,
+    layout: "default",
+  },
+  {
+    slug: "3d-modeling-printing-keycap",
+    title: "3D Modeling + Printing Keycap",
+    tags: ["Fabrication", "Parametric Design"],
+    summary: "",
+    year: "2023",
+    tools: "Rhino · Grasshopper · Formlabs SLA",
+    imageSrc: "/design/3d-modeling-printing-keycap.jpg",
+    imageAlt: "3D-printed mint and translucent keycaps on a wooden table",
+    featured: false,
+    layout: "default",
+  },
+  {
+    slug: "melting-into-river",
+    title: "Melting into River",
+    tags: ["Generative Design", "Interaction Design"],
+    summary:
+      "Body motion drives a particle narrative from frozen isolation to release.",
+    year: "2021",
+    tools: "Processing · Kinect",
+    imageSrc: "/design/melting-into-river.jpg",
+    imageAlt:
+      "Person interacting with dual particle projections in a warehouse gallery",
+    featured: false,
+    layout: "wide",
+    href: `${DESIGN_PORTFOLIO_VIEWER}?from=15&to=18`,
+  },
+  {
+    slug: "virtual-nyu-lounge",
+    title: "Virtual NYU Lounge",
+    tags: ["Virtual Production & XR"],
+    summary: "",
+    year: "2022",
+    tools: "Unreal Engine · Maya",
+    imageSrc: "/design/virtual-nyu-lounge.png",
+    imageAlt: "Unreal Engine lounge interior with neon frames and blue lighting",
+    featured: false,
+    layout: "default",
+  },
+  {
+    slug: "the-disconnection",
+    title: "The Disconnection",
+    tags: ["Virtual Production & XR"],
+    summary: "",
+    year: "2022",
+    tools: "Maya · Unreal · Green screen · After Effects",
+    imageSrc: "/design/the-disconnection.png",
+    imageAlt: "Particle burst forming a figure against a black background",
+    featured: false,
+    layout: "default",
+  },
+  {
+    slug: "witch-on-the-pie-moon",
+    title: "Witch on the Pie Moon",
+    tags: ["Virtual Production & XR"],
+    summary: "",
+    year: "2023",
+    tools: "Unreal Engine · MoCap",
+    imageSrc: "/design/witch-on-the-pie-moon.jpg",
+    imageAlt: "Stylized character sitting among rocks under a night sky",
+    featured: false,
+    layout: "default",
+  },
+  {
+    slug: "mourning",
+    title: "Mourning",
+    tags: ["Virtual Production & XR"],
+    summary: "",
+    year: "2022",
+    tools: "Maya · Unreal · MoCap",
+    imageSrc: "/design/mourning.png",
+    imageAlt: "First-person Unreal Engine interior looking up at a green sink",
+    featured: false,
+    layout: "default",
+  },
+];
+
+export const featuredDesignProject = designProjects.find(
+  (project) => project.featured,
+);
+
+export const masonryDesignProjects = designProjects.filter(
+  (project) => !project.featured,
+);
