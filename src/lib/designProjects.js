@@ -22,7 +22,6 @@ export const designProjects = [
     videoEnd: 115,
     featured: true,
     layout: "featured",
-    badge: "Motion",
     href: `${DESIGN_PORTFOLIO_VIEWER}?from=4&to=9&paper=white`,
   },
   {
