@@ -79,7 +79,13 @@ export default function Navbar() {
       </Link>
 
       {/* 右側 導航 */}
-      <div className="flex gap-8 text-sm font-medium">
+      <div className="flex shrink-0 gap-5 text-sm font-medium min-[720px]:gap-8">
+        <Link
+          href="/design"
+          className="transition-colors hover:text-gray-400"
+        >
+          Design
+        </Link>
         <Link
           href="/#about"
           onClick={scrollToAbout}

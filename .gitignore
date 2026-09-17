@@ -20,6 +20,10 @@
 # production
 /build
 
+# Claude Design handoff (large prototype bundle)
+/Design Page.html
+/public/design/_raw/
+
 # misc
 .DS_Store
 *.pem
