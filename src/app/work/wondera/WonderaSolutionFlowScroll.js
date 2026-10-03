@@ -46,6 +46,10 @@ const GAP_LEFT = 3 * COL + PHONE_INSET + PHONE_W;
 const CATCH = 0.12;
 const FALLBACK = 0.35;
 const MOMENTUM_GAP = 160;
+
+// Below this scale (phones) subtitles become unreadable, so blocks show only
+// enlarged titles and lane labels grow too.
+const COMPACT_BELOW = 0.6;
 const SCROLL_KEYS = {
   ArrowDown: 1,
   PageDown: 1,
@@ -105,8 +109,12 @@ function FlowBlock({ title, subtitle, shape = "arrow" }) {
         paddingRight: shape === "arrow" ? TIP / 2 : 0,
       }}
     >
-      <span className="text-[14px] font-semibold leading-[18px]">{title}</span>
-      <span className="text-[11px] leading-[14px] tracking-[-0.01em]">{subtitle}</span>
+      <span className="text-[14px] font-semibold leading-[18px] group-data-[compact=true]:text-[24px] group-data-[compact=true]:leading-[28px]">
+        {title}
+      </span>
+      <span className="text-[11px] leading-[14px] tracking-[-0.01em] group-data-[compact=true]:hidden">
+        {subtitle}
+      </span>
     </div>
   );
 }
@@ -114,7 +122,7 @@ function FlowBlock({ title, subtitle, shape = "arrow" }) {
 function Bracket({ label }) {
   return (
     <div className={`flex flex-col ${dsColors.wondera.eyebrow}`}>
-      <span className="whitespace-nowrap text-center text-[14px] font-semibold leading-4">
+      <span className="whitespace-nowrap text-center text-[14px] font-semibold leading-4 group-data-[compact=true]:text-[20px]">
         {label}
       </span>
       <div
@@ -314,7 +322,8 @@ export function WonderaSolutionFlowScroll() {
         }}
       >
         <div
-          className={`${dsFonts.body.className} absolute left-0 top-0 origin-top-left overflow-hidden`}
+          className={`${dsFonts.body.className} group absolute left-0 top-0 origin-top-left overflow-hidden`}
+          data-compact={scale !== null && scale < COMPACT_BELOW}
           style={{ width: CANVAS_W, height: CANVAS_H, transform: `scale(${scale ?? 1})` }}
         >
           {/* Lane brackets */}
