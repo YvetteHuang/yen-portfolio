@@ -102,7 +102,7 @@ export default function WonderaCaseStudy() {
 
   return (
     <main
-      className={`${dsFonts.body.className} min-h-screen scroll-smooth bg-black pb-24 text-zinc-100`}
+      className={`${dsFonts.body.className} min-h-screen overflow-x-clip scroll-smooth bg-black pb-24 text-zinc-100`}
     >
       <section
         className={`${dsLayout.caseStudyHeroSection} ${dsLayout.caseStudyHeroHeight} ${dsColors.wondera.heroGradient}`}
