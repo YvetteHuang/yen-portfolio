@@ -480,9 +480,7 @@ export default function WonderaCaseStudy() {
                     fragmented journey with the unified one we shipped.
                   </p>
 
-                  <div className={`${dsRadius.lg} ${dsSurface.subtleCardOnDark} p-6 min-[1024px]:p-8`}>
-                    <WonderaSolutionFlowScroll />
-                  </div>
+                  <WonderaSolutionFlowScroll />
                 </div>
               </div>
             </div>
