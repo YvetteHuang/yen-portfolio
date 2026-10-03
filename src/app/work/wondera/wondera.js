@@ -24,9 +24,9 @@ const wonderaFeatureTitleClass = `${cs.featureTitle} ${dsColors.text.primaryOnDa
 function CaseStudyCaption({ variant = "neutral", className = "", children }) {
   const colorClass =
     variant === "before"
-      ? dsColors.caseStudy.before
+      ? dsColors.caseStudy.beforeOnDark
       : variant === "after"
-        ? dsColors.caseStudy.after
+        ? dsColors.caseStudy.afterOnDark
         : dsColors.text.mutedOnDark;
 
   return (

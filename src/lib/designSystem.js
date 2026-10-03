@@ -146,6 +146,10 @@ export const dsColors = {
   caseStudy: {
     before: "text-[#b83d3d]",
     after: "text-[#4ba871]",
+    // Dark-background variants: #b83d3d is only ~3.3:1 on black, so the red is
+    // lifted to ~5.8:1. The green already reads at ~7:1 and is kept as-is.
+    beforeOnDark: "text-[#e05a5a]",
+    afterOnDark: "text-[#4ba871]",
     eyebrow: {
       wondera: "text-violet-300",
       stocknews: "text-[#4271AA]",

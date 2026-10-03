@@ -286,21 +286,22 @@ export function WonderaSolutionFlowScroll() {
 
   return (
     <div ref={rootRef} className="w-full">
-      <div className={`relative ${cs.body} text-zinc-200`}>
+      <div className={`relative ${cs.body}`}>
         <p
+          className={dsColors.caseStudy.beforeOnDark}
           style={{ opacity: a ? 0 : 1, transition: t(PHASE.exit, ["opacity"]) }}
           aria-hidden={a}
         >
-          <span className="font-semibold text-zinc-100">Before</span> — Singing and Training
-          experience are separated.
+          <span className="font-semibold">Before</span> — Singing and Training experience are
+          separated.
         </p>
         <p
-          className="absolute inset-x-0 top-0"
+          className={`absolute inset-x-0 top-0 ${dsColors.caseStudy.afterOnDark}`}
           style={{ opacity: a ? 1 : 0, transition: t(PHASE.exit, ["opacity"]) }}
           aria-hidden={!a}
         >
-          <span className="font-semibold text-zinc-100">After</span> — Singing and Training
-          experience are integrated.
+          <span className="font-semibold">After</span> — Singing and Training experience are
+          integrated.
         </p>
       </div>
 
