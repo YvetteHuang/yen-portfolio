@@ -20,6 +20,11 @@
 # production
 /build
 
+# Claude Design handoff (large prototype bundle)
+/Design Page.html
+/public/design/_raw/
+/YenYi Huang Design Portfolio.pdf
+
 # misc
 .DS_Store
 *.pem

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  dsCaseStudyType,
   dsColors,
   dsDivider,
   dsFonts,
@@ -26,18 +25,18 @@ const overviewParagraphs = [
   "I redesigned from the ground up: starting with the AI Newsfeed to solve information overload, then extending into Smart Search and a Personalized Dashboard to take users from passive reading to confident decision-making.",
 ];
 
-const caseBodyTextClass = dsCaseStudyType.body;
-const caseHeroTitleClass = dsCaseStudyType.heroTitle;
-const caseSubtitleClass = `${dsCaseStudyType.subtitle} text-inherit`;
-const caseSectionEyebrowClass = `${dsFonts.body.className} ${dsType.meta} ${dsColors.caseStudy.eyebrow.stocknews} font-semibold`;
-const caseSectionTitleClass = `${dsFonts.display.className} ${dsCaseStudyType.sectionTitle} ${dsLayout.caseStudyContentMax}`;
+const caseBodyTextClass = dsType.body;
+const caseHeroTitleClass = dsType.heroTitle;
+const caseSubtitleClass = `${dsType.subheading} text-inherit`;
+const caseSectionEyebrowClass = `${dsFonts.body.className} ${dsType.eyebrow} ${dsColors.caseStudy.eyebrow.stocknews} font-semibold`;
+const caseSectionTitleClass = `${dsFonts.display.className} ${dsType.sectionTitle} ${dsLayout.caseStudyContentMax}`;
 const caseStudySectionClass = dsLayout.caseStudySection;
 const caseStudySectionTightBottomClass = dsLayout.caseStudySectionTightBottom;
 const caseStudyDesktopFrameClass =
   "mx-auto box-border flex w-full max-w-[1280px] flex-col items-center justify-center gap-[10px] px-6 py-16 min-[1024px]:h-[685px] min-[1024px]:px-[85px] min-[1024px]:py-[86px]";
 const caseStudyDesktopContentClass =
   "mx-auto flex w-full max-w-[1052px] flex-col gap-[10px]";
-const caseStudyCaptionClass = `${dsCaseStudyType.caption} mb-2`;
+const caseStudyCaptionClass = `${dsType.caption} mb-2`;
 
 function CaseStudyLockIcon() {
   return (
@@ -405,7 +404,7 @@ function ImpactStat({ value, label, highlight }) {
   return (
     <div className="w-full max-w-[228px]">
       <p
-        className={`${dsFonts.display.className} ${dsCaseStudyType.statValue} text-black`}
+        className={`${dsFonts.display.className} ${dsType.statValue} text-black`}
       >
         {value}
       </p>
@@ -923,7 +922,7 @@ export default function StockNewsCaseStudy() {
             >
               Back to homepage
             </Link>
-            <p className={`${dsType.meta} text-zinc-500`}>StockNews Case Study</p>
+            <p className={`${dsType.eyebrow} text-zinc-500`}>StockNews Case Study</p>
           </section>
         </div>
       </article>

@@ -3,11 +3,13 @@ import { Inter, Source_Serif_4 } from "next/font/google";
 const displayFont = Source_Serif_4({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
+  variable: "--font-ds-display",
 });
 
 const bodyFont = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-ds-body",
 });
 
 export const dsFonts = {
@@ -23,46 +25,31 @@ export const dsBreakpoints = {
 };
 
 export const dsType = {
-  // 320-719 (mobile), 720-1023 (tablet), 1024-1439 (desktop), 1440+ (large desktop)
-  h1: "text-[clamp(2.125rem,10vw,3rem)] min-[720px]:text-[3.75rem] min-[1024px]:text-[4.5rem] min-[1440px]:text-[6rem]",
-  h2: "text-[clamp(1.875rem,8vw,2.5rem)] min-[720px]:text-[2.75rem] min-[1024px]:text-[3rem] min-[1440px]:text-[3.75rem] leading-[1.14] tracking-tight",
-  h3: "text-[2rem] min-[1024px]:text-[2.375rem] min-[1440px]:text-[2.625rem]",
-  subtitle:
-    "text-[0.9375rem] min-[720px]:text-[1.125rem] min-[1024px]:text-[1.25rem] min-[1440px]:text-[1.5rem] font-bold uppercase tracking-[0.08em]",
-  body: "text-[1rem] leading-[1.65] min-[720px]:text-[1.125rem] min-[1024px]:text-[1.125rem] min-[1440px]:text-[1.5rem]",
-  meta: "text-[0.75rem] min-[720px]:text-[0.8125rem] uppercase tracking-[0.2em]",
-  heroLede:
-    "text-[1.375rem] min-[720px]:text-[1.625rem] min-[1024px]:text-[2rem] font-light leading-[1.15]",
-  emphasisHeading:
-    "text-[1.75rem] min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem] leading-[1.4] tracking-tight",
-  featureTitle:
-    "text-[1.2rem] min-[1024px]:text-[1.35rem] font-semibold leading-snug",
-  figureCaption: "text-[1.05rem] font-semibold",
-  statValue:
-    "text-[2.5rem] min-[1440px]:text-[3.25rem] font-semibold leading-none",
-};
-
-// Case study typography — size/weight only; pair with dsColors.text.* for color.
-// Mobile body: 16/24 · Tablet+: 18/28
-export const dsCaseStudyType = {
+  // Hero
   heroTitle:
     "text-[clamp(2.4rem,7vw,4rem)] min-[1024px]:text-[4.25rem] font-semibold leading-tight tracking-tight",
+  heroLede:
+    "text-[1.375rem] min-[720px]:text-[1.625rem] min-[1024px]:text-[2rem] font-light leading-[1.15]",
+
+  // Headings
   sectionTitle:
     "text-[clamp(1.875rem,8vw,2.5rem)] min-[720px]:text-[2.75rem] min-[1024px]:text-[3rem] font-semibold leading-[1.14] tracking-tight",
-  // Eyebrow: dsType.meta + dsColors.caseStudy.eyebrow.{case} + font-semibold (not sectionEyebrow below).
-  body:
-    "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7",
-  subtitle:
+  subheading:
     "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7 font-bold uppercase",
   featureTitle:
     "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7 font-bold",
-  pullQuote:
-    "text-[1.75rem] min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem] font-semibold leading-[1.4] tracking-tight",
-  blockquote:
-    "text-[clamp(2rem,5vw,2.25rem)] font-bold italic leading-[1.25] tracking-tight",
+  eyebrow:
+    "text-[0.75rem] min-[720px]:text-[0.8125rem] uppercase tracking-[0.2em] leading-[1.6]",
+
+  // Body
+  body: "text-[1rem] leading-6 min-[720px]:text-[1.125rem] min-[720px]:leading-7",
+  caption: "text-center text-[0.95rem] font-normal leading-snug",
+
+  // Accents
   statValue:
     "text-[2.5rem] min-[1440px]:text-[3.25rem] font-semibold leading-none",
-  caption: "text-center text-[0.95rem] font-normal leading-snug",
+  quote:
+    "text-[1.75rem] min-[720px]:text-[2.25rem] min-[1024px]:text-[2.5rem] font-semibold leading-[1.4] tracking-tight",
   annotationLabel:
     "text-center text-xs font-semibold uppercase tracking-[0.14em] min-[1024px]:text-sm",
   annotation:

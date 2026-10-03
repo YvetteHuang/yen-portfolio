@@ -1,7 +1,8 @@
 import AboutSection from "@/components/AboutSection";
+import BackgroundEmitter from "@/components/BackgroundEmitter";
+import HeroSection from "@/components/HeroSection";
+import MoreWorkSection from "@/components/MoreWorkSection";
 import ProjectCard from "@/components/ProjectCard";
-import { dsFonts, dsType } from "@/lib/designSystem";
-
 
 const projects = [
   {
@@ -43,56 +44,30 @@ const projects = [
       "md:scale-[0.85] md:group-hover:scale-100 md:-translate-x-6 lg:-translate-x-12",
     href: "/work/wondera",
   },
-  {
-    title: "Gizmu",
-    tags: ["UX Design", "AR", "Music Game"],
-    description:
-      "An AR mobile interactive game for everyone creating music based on daily objects.",
-    gradientClassName: "bg-[linear-gradient(to_bottom_right,#FF96D5_0%,#7A4A7C_45%,#2B2145_90%)]",
-    imageSrc: "/homepage_gizmu.png",
-    imageAlt: "Gizmu AR app mockup",
-    imageRight: false,
-    href: "#",
-    hidden: true,
-  },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black font-sans text-zinc-50">
-      <main className="mx-auto w-full max-w-6xl px-6 pb-24 pt-28 md:px-10 md:pt-32">
-        <section className="mb-20 md:mb-28" aria-labelledby="intro-heading">
-          <h1
-            id="intro-heading"
-            className={`${dsFonts.display.className} ${dsType.h1} max-w-4xl font-semibold tracking-tight text-white`}
-          >
-            Hi, I&apos;m Yen.
-          </h1>
-          <p
-            className={`${dsFonts.body.className} ${dsType.heroLede} mt-2 text-white/90`}
-          >
-            Product Designer who thinks in systems,
-            <br />
-            sweats the details, and never stops asking why.
-            <br />
-            Currently focused on AI products and fintech.
-          </p>
-        </section>
+    <div className="relative min-h-screen bg-black font-sans text-zinc-50">
+      <BackgroundEmitter />
+      <main className="relative z-10 pb-24">
+        <HeroSection />
 
-        <section id="work" aria-labelledby="work-heading" className="scroll-mt-28">
+        <div className="mx-auto w-full max-w-[1280px] px-6 md:px-10">
+        <section id="work" aria-labelledby="work-heading" className="scroll-mt-28 pt-4 md:pt-8">
           <h2 id="work-heading" className="sr-only">
             Selected work
           </h2>
           <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
-            {projects
-              .filter((project) => !project.hidden)
-              .map((project) => (
-                <ProjectCard key={project.title} {...project} />
-              ))}
+            {projects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
           </div>
         </section>
 
+        <MoreWorkSection />
         <AboutSection />
+        </div>
       </main>
     </div>
   );

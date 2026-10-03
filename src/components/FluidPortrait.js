@@ -93,13 +93,13 @@ const FRAGMENT = /* glsl */ `
     float ny = snoise(vec3(uv * scale + 100.0, t));
     vec2 flow = vec2(nx, ny);
 
-    float ampIdle = 0.006;
-    float ampHover = 0.055;
+    // paint-like flow — image is already stylized; keep distortion subtle at idle
+    float ampIdle = 0.012;
+    float ampHover = 0.065;
     float amp = ampIdle + influence * uHover * ampHover;
     vec2 disp = flow * amp;
 
-    // chromatic aberration: split channels along the flow direction
-    float ca = 0.0015 + influence * uHover * 0.013;
+    float ca = 0.001 + influence * uHover * 0.016;
     vec2 caDir = normalize(flow + 0.0001) * ca;
 
     vec2 baseUv = uv + disp;
@@ -109,21 +109,25 @@ const FRAGMENT = /* glsl */ `
     float a = texture2D(uTexture, baseUv).a;
 
     vec3 color = vec3(r, g, b);
+    float lum = dot(color, vec3(0.299, 0.587, 0.114));
 
-    // blue / magenta rim glow on the high-displacement areas
-    float edge = clamp(length(disp) * 28.0, 0.0, 1.0) * (0.35 + 0.65 * uHover);
-    vec3 blue = vec3(0.25, 0.45, 1.0);
-    vec3 magenta = vec3(1.0, 0.2, 0.7);
-    color += edge * mix(blue, magenta, nx * 0.5 + 0.5) * 0.35;
+    // accent brush edges already in the artwork
+    float paintEdge = smoothstep(0.06, 0.28, lum) * (1.0 - smoothstep(0.55, 0.95, lum));
+    vec3 cyan = vec3(0.15, 0.88, 1.0);
+    vec3 magenta = vec3(1.0, 0.28, 0.72);
+    color += paintEdge * mix(cyan, magenta, nx * 0.5 + 0.5) * (0.06 + uHover * 0.1);
+
+    float edge = clamp(length(disp) * 24.0, 0.0, 1.0) * (0.25 + 0.75 * uHover);
+    color += edge * mix(cyan, magenta, ny * 0.5 + 0.5) * 0.22;
 
     gl_FragColor = vec4(color, a);
   }
 `;
 
 const PARTICLE_COLORS = [
-  [130, 170, 255],
-  [255, 120, 205],
-  [235, 235, 255],
+  [60, 210, 255],
+  [255, 90, 190],
+  [255, 180, 230],
 ];
 
 export default function FluidPortrait({ src, alt = "", className = "", sizes = "(max-width: 768px) 80vw, 40vw" }) {
@@ -230,8 +234,8 @@ export default function FluidPortrait({ src, alt = "", className = "", sizes = "
         let hoverTarget = 0;
         let particles = [];
 
-        const spawn = (px, py) => {
-          for (let i = 0; i < 3; i++) {
+        const spawn = (px, py, count = 3) => {
+          for (let i = 0; i < count; i++) {
             const angle = Math.random() * Math.PI * 2;
             const speed = 0.3 + Math.random() * 1.1;
             const c = PARTICLE_COLORS[(Math.random() * PARTICLE_COLORS.length) | 0];
@@ -247,6 +251,15 @@ export default function FluidPortrait({ src, alt = "", className = "", sizes = "
             });
           }
           if (particles.length > 420) particles = particles.slice(-420);
+        };
+
+        const spawnEdge = (w, h) => {
+          const cx = w * 0.5;
+          const cy = h * 0.5;
+          const rx = w * 0.38;
+          const ry = h * 0.38;
+          const angle = Math.random() * Math.PI * 2;
+          spawn(cx + Math.cos(angle) * rx, cy + Math.sin(angle) * ry, 1);
         };
 
         const drawParticles = (w, h) => {
@@ -320,7 +333,12 @@ export default function FluidPortrait({ src, alt = "", className = "", sizes = "
           program.uniforms.uHover.value = hover;
           renderer.render({ scene: mesh });
 
-          drawParticles(container.clientWidth, container.clientHeight);
+          const w = container.clientWidth;
+          const h = container.clientHeight;
+          if (hover < 0.12 && Math.random() < 0.28) {
+            spawnEdge(w, h);
+          }
+          drawParticles(w, h);
         };
         raf = requestAnimationFrame(update);
 

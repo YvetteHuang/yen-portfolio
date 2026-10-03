@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Anton } from "next/font/google";
-import { dsCaseStudyType, dsColors, dsFonts } from "@/lib/designSystem";
+import { dsColors, dsFonts, dsType } from "@/lib/designSystem";
 
-const cs = dsCaseStudyType;
+const cs = dsType;
 
 // Condensed display face so the rotated "GAP" can fill the gap's width.
 const gapFont = Anton({ subsets: ["latin"], weight: "400" });

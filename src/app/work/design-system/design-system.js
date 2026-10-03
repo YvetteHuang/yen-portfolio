@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  dsCaseStudyType,
   dsColors,
   dsDivider,
   dsFonts,
@@ -10,14 +9,14 @@ import {
   dsType,
 } from "@/lib/designSystem";
 
-const caseHeroTitleClass = dsCaseStudyType.heroTitle;
-const caseBodyTextClass = dsCaseStudyType.body;
-const caseSubtitleClass = `${dsCaseStudyType.subtitle} text-inherit`;
-const caseSectionEyebrowClass = `${dsFonts.body.className} ${dsType.meta} ${dsColors.caseStudy.eyebrow.designSystem} font-semibold`;
-const caseSectionTitleClass = `${dsFonts.display.className} ${dsCaseStudyType.sectionTitle} ${dsLayout.caseStudyContentMax}`;
+const caseHeroTitleClass = dsType.heroTitle;
+const caseBodyTextClass = dsType.body;
+const caseSubtitleClass = `${dsType.subheading} text-inherit`;
+const caseSectionEyebrowClass = `${dsFonts.body.className} ${dsType.eyebrow} ${dsColors.caseStudy.eyebrow.designSystem} font-semibold`;
+const caseSectionTitleClass = `${dsFonts.display.className} ${dsType.sectionTitle} ${dsLayout.caseStudyContentMax}`;
 const caseStudySectionClass = dsLayout.caseStudySection;
 const caseStudySectionCompactClass = dsLayout.caseStudySectionCompact;
-const caseStudyCaptionClass = `${dsCaseStudyType.caption} mb-2`;
+const caseStudyCaptionClass = `${dsType.caption} mb-2`;
 
 const overviewDetails = [
   { label: "MY ROLE", value: "Founding Designer" },
@@ -503,7 +502,7 @@ export default function DesignSystemCaseStudy() {
                 key={stat.value}
                 className="rounded-lg bg-[#1476FF] px-6 py-7 text-white"
               >
-                <p className={dsCaseStudyType.statValue}>{stat.value}</p>
+                <p className={dsType.statValue}>{stat.value}</p>
                 <p className="mt-4 text-base leading-snug">{stat.description}</p>
               </article>
             ))}
@@ -547,7 +546,7 @@ export default function DesignSystemCaseStudy() {
           <header className="space-y-4">
             <p className={caseSectionEyebrowClass}>Reflection</p>
             <blockquote
-              className={`${dsFonts.display.className} ${dsCaseStudyType.blockquote} ${dsLayout.caseStudyContentMax}`}
+              className={`${dsFonts.display.className} ${dsType.quote} ${dsLayout.caseStudyContentMax}`}
             >
               "A design system isn&apos;t a deliverable. It&apos;s an ongoing
               conversation between design intent and engineering reality"
@@ -585,7 +584,7 @@ export default function DesignSystemCaseStudy() {
             >
               Back to homepage
             </Link>
-            <p className={`${dsType.meta} text-zinc-500`}>
+            <p className={`${dsType.eyebrow} text-zinc-500`}>
               Design System Case Study
             </p>
           </section>
