@@ -23,9 +23,9 @@ const wonderaFeatureTitleClass = `${cs.featureTitle} ${dsColors.text.primaryOnDa
 function CaseStudyCaption({ variant = "neutral", className = "", children }) {
   const colorClass =
     variant === "before"
-      ? dsColors.caseStudy.before
+      ? dsColors.caseStudy.beforeOnDark
       : variant === "after"
-        ? dsColors.caseStudy.after
+        ? dsColors.caseStudy.afterOnDark
         : dsColors.text.mutedOnDark;
 
   return (
@@ -101,7 +101,7 @@ export default function WonderaCaseStudy() {
 
   return (
     <main
-      className={`${dsFonts.body.className} min-h-screen scroll-smooth bg-black pb-24 text-zinc-100`}
+      className={`${dsFonts.body.className} min-h-screen overflow-x-clip scroll-smooth bg-black pb-24 text-zinc-100`}
     >
       <section
         className={`${dsLayout.caseStudyHeroSection} ${dsLayout.caseStudyHeroHeight} ${dsColors.wondera.heroGradient}`}
@@ -134,7 +134,7 @@ export default function WonderaCaseStudy() {
         className={`${dsLayout.pageFrame} relative pt-12 min-[720px]:pt-16 min-[1024px]:pt-20`}
       >
         <div className="relative">
-          <aside className="absolute inset-y-0 left-0 hidden w-52 -translate-x-[calc(100%+1.5rem)] min-[1400px]:block">
+          <aside className="absolute inset-y-0 left-0 z-10 hidden w-52 -translate-x-[calc(100%+1.5rem)] min-[1400px]:block">
             <WonderaSectionToc sections={tocSections} />
           </aside>
           <div className={dsSpacing.sectionGap}>
@@ -175,7 +175,9 @@ export default function WonderaCaseStudy() {
               </div>
             </div>
 
-            <aside className={`space-y-7 ${cs.body} ${dsColors.text.secondaryOnDark}`}>
+            <aside
+              className={`space-y-7 min-[1024px]:col-span-4 ${cs.body} ${dsColors.text.secondaryOnDark}`}
+            >
               <div className="space-y-1">
                 <p className={wonderaOverviewLabelClass}>Skill</p>
                 <p>UX Design</p>
@@ -479,9 +481,7 @@ export default function WonderaCaseStudy() {
                     fragmented journey with the unified one we shipped.
                   </p>
 
-                  <div className={`${dsRadius.lg} ${dsSurface.subtleCardOnDark} p-6 min-[1024px]:p-8`}>
-                    <WonderaSolutionFlowScroll />
-                  </div>
+                  <WonderaSolutionFlowScroll />
                 </div>
               </div>
             </div>

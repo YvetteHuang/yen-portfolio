@@ -112,6 +112,9 @@ export const dsSurface = {
   subtleCardOnDark: "border border-white/10 bg-white/[0.02]",
   elevatedCardOnDark: "border border-white/10 bg-white/[0.03]",
   drawerOnDark: "border border-white/10 bg-zinc-950/95 shadow-2xl backdrop-blur",
+  // Frosted panel that lets colored bands behind it show through, blurred.
+  glassOnDark:
+    "border border-white/15 bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl backdrop-saturate-150",
   mobilePreviewOnDark: "rounded-lg border border-white/10 bg-black/30",
   accentCardWondera: "border border-violet-400/30 bg-violet-500/10",
 };
@@ -130,6 +133,10 @@ export const dsColors = {
   caseStudy: {
     before: "text-[#b83d3d]",
     after: "text-[#4ba871]",
+    // Dark-background variants: #b83d3d is only ~3.3:1 on black, so the red is
+    // lifted to ~5.8:1. The green already reads at ~7:1 and is kept as-is.
+    beforeOnDark: "text-[#e05a5a]",
+    afterOnDark: "text-[#4ba871]",
     eyebrow: {
       wondera: "text-violet-300",
       stocknews: "text-[#4271AA]",

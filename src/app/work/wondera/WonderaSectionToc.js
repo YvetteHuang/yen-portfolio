@@ -71,7 +71,7 @@ export function WonderaSectionToc({ sections }) {
   return (
     <>
       <nav
-        className={`sticky top-24 hidden p-4 min-[1400px]:block ${dsRadius.lg} ${dsSurface.subtleCardOnDark}`}
+        className={`sticky top-24 hidden p-4 min-[1400px]:block ${dsRadius.lg} ${dsSurface.glassOnDark}`}
         aria-label="Wondera case study table of contents"
       >
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
