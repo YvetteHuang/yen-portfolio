@@ -167,4 +167,38 @@ export const dsColors = {
     flowInkHex: "#6233C1",
     flowTextHex: "#2A1146",
   },
+  about: {
+    groundBackground: "bg-[#08080A]",
+    inkText: "text-[#E8E8EC]",
+    dimText: "text-[#71717C]",
+    faintText: "text-[#44444D]",
+    lineBorder: "border-[#26262D]",
+    accentText: "text-[#70C0FF]",
+    accentGroupHoverText: "group-hover:text-[#70C0FF]",
+    inkHoverText: "hover:text-[#E8E8EC]",
+    accentFocusOutline:
+      "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#70C0FF]",
+    accentBorder: "border-[#70C0FF]",
+    // Lit CV org lines and lit publications.
+    litText: "text-[#C6C6D0]",
+    sheetText: "text-[#D6D6DE]",
+    // Frosted panels over the graph: the hover panel and the expanded sheet.
+    glassPanel:
+      "border border-white/[0.11] bg-white/[0.055] backdrop-blur-[16px] backdrop-saturate-[1.25]",
+    glassSheet:
+      "border border-white/[0.12] bg-white/[0.055] backdrop-blur-[22px] backdrop-saturate-[1.3]",
+    // Hex values for SVG attributes in the hero graph.
+    graph: {
+      inkHex: "#E8E8EC",
+      dimHex: "#71717C",
+      lineHex: "#26262D",
+      ringHex: "#3A3A44",
+      coreLabelHex: "#F3F3F7",
+      midLabelHex: "#C6C6D0",
+      accentHex: "#70C0FF",
+      // The one node outside the practice (Mushrooms) lights up in pink.
+      accentAltHex: "#F050C0",
+      litDotHex: "#EFF8FF",
+    },
+  },
 };
