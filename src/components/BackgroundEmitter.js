@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { dsColors } from "@/lib/designSystem";
 
 /** Locked for launch; v1–v3 ambient code kept below for future iteration. */
 const EMITTER_MODE = "solo";
@@ -441,8 +442,8 @@ export default function BackgroundEmitter() {
       <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="emitter-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#ff78cd" />
-            <stop offset="100%" stopColor="#82aaff" />
+            <stop offset="0%" stopColor={dsColors.brand.pinkHex} />
+            <stop offset="100%" stopColor={dsColors.brand.blueHex} />
           </linearGradient>
         </defs>
 

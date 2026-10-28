@@ -6,6 +6,7 @@ import { aboutNodes } from "@/lib/aboutHero";
 import AboutCv from "./AboutCv";
 import AboutGraph from "./AboutGraph";
 import AboutPanel from "./AboutPanel";
+import AboutParticles from "./AboutParticles";
 import AboutSheet from "./AboutSheet";
 
 const nodeById = Object.fromEntries(aboutNodes.map((n) => [n.id, n]));
@@ -95,6 +96,7 @@ export default function AboutHero() {
         className="relative min-w-0 flex-1 overflow-hidden"
         onClick={() => closeSheet()}
       >
+        <AboutParticles fieldId={litId} />
         <AboutGraph
           litId={litId}
           pinnedId={pinnedId}

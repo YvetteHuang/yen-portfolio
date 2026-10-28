@@ -9,7 +9,7 @@ const FOCUSABLE =
   'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 const thumbClass =
-  "relative aspect-[4/3] overflow-hidden rounded-[2px] border border-white/[0.07] bg-[linear-gradient(135deg,rgba(255,255,255,0.10),rgba(112,192,255,0.13))] brightness-[0.94] saturate-[0.92] transition-[filter] duration-200 group-hover:brightness-[1.04] group-hover:saturate-100 motion-reduce:transition-none";
+  "relative aspect-[4/3] overflow-hidden rounded-[2px] border border-white/[0.07] bg-[linear-gradient(135deg,rgba(255,255,255,0.10),rgba(130,170,255,0.13))] brightness-[0.94] saturate-[0.92] transition-[filter] duration-200 group-hover:brightness-[1.04] group-hover:saturate-100 motion-reduce:transition-none";
 
 function Thumb({ src, className = "" }) {
   return (

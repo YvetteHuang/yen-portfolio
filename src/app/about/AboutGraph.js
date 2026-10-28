@@ -208,6 +208,7 @@ export default function AboutGraph({ litId, pinnedId, ...handlers }) {
       aria-label="How architecture, HCI, generative design, interaction design, fabrication, XR, design systems and product design connect"
     >
       <defs>
+        {/* Darker, lighter and shadow tints of the brand blue, for a metallic sheen on lit edges. */}
         <linearGradient
           id="about-metal"
           gradientUnits="userSpaceOnUse"
@@ -216,13 +217,13 @@ export default function AboutGraph({ litId, pinnedId, ...handlers }) {
           x2="980"
           y2="740"
         >
-          <stop offset="0" stopColor="#6FB6EE" />
-          <stop offset="0.26" stopColor="#70C0FF" />
-          <stop offset="0.40" stopColor="#B6DEFF" />
-          <stop offset="0.47" stopColor="#70C0FF" />
-          <stop offset="0.72" stopColor="#5287B8" />
-          <stop offset="0.80" stopColor="#7BC6FF" />
-          <stop offset="1" stopColor="#70C0FF" />
+          <stop offset="0" stopColor="#81A1EE" />
+          <stop offset="0.26" stopColor={g.accentHex} />
+          <stop offset="0.40" stopColor="#BFD4FF" />
+          <stop offset="0.47" stopColor={g.accentHex} />
+          <stop offset="0.72" stopColor="#5F77B8" />
+          <stop offset="0.80" stopColor="#8CB1FF" />
+          <stop offset="1" stopColor={g.accentHex} />
         </linearGradient>
         <linearGradient
           id="about-metal-text"
@@ -232,11 +233,11 @@ export default function AboutGraph({ litId, pinnedId, ...handlers }) {
           x2="980"
           y2="740"
         >
-          <stop offset="0" stopColor="#9ED6FF" />
-          <stop offset="0.34" stopColor="#CDE9FF" />
-          <stop offset="0.52" stopColor="#8FCDFF" />
-          <stop offset="0.78" stopColor="#C4E5FF" />
-          <stop offset="1" stopColor="#9ED6FF" />
+          <stop offset="0" stopColor="#AAC5FF" />
+          <stop offset="0.34" stopColor="#D3E1FF" />
+          <stop offset="0.52" stopColor="#97B8FF" />
+          <stop offset="0.78" stopColor="#CBDBFF" />
+          <stop offset="1" stopColor="#AAC5FF" />
         </linearGradient>
       </defs>
 

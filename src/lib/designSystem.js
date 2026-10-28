@@ -120,6 +120,11 @@ export const dsSurface = {
 };
 
 export const dsColors = {
+  // Site accent pair, first used in the homepage background emitter.
+  brand: {
+    blueHex: "#82AAFF",
+    pinkHex: "#FF78CD",
+  },
   text: {
     primaryOnDark: "text-zinc-100",
     secondaryOnDark: "text-zinc-200",
@@ -173,12 +178,13 @@ export const dsColors = {
     dimText: "text-[#71717C]",
     faintText: "text-[#44444D]",
     lineBorder: "border-[#26262D]",
-    accentText: "text-[#70C0FF]",
-    accentGroupHoverText: "group-hover:text-[#70C0FF]",
+    // Accents use dsColors.brand; Tailwind needs the hex written out.
+    accentText: "text-[#82AAFF]",
+    accentGroupHoverText: "group-hover:text-[#82AAFF]",
     inkHoverText: "hover:text-[#E8E8EC]",
     accentFocusOutline:
-      "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#70C0FF]",
-    accentBorder: "border-[#70C0FF]",
+      "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#82AAFF]",
+    accentBorder: "border-[#82AAFF]",
     // Lit CV org lines and lit publications.
     litText: "text-[#C6C6D0]",
     sheetText: "text-[#D6D6DE]",
@@ -195,10 +201,10 @@ export const dsColors = {
       ringHex: "#3A3A44",
       coreLabelHex: "#F3F3F7",
       midLabelHex: "#C6C6D0",
-      accentHex: "#70C0FF",
+      accentHex: "#82AAFF",
       // The one node outside the practice (Mushrooms) lights up in pink.
-      accentAltHex: "#F050C0",
-      litDotHex: "#EFF8FF",
+      accentAltHex: "#FF78CD",
+      litDotHex: "#F5F8FF",
     },
   },
 };
