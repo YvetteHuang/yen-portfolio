@@ -1,6 +1,8 @@
 // Copy and graph data for the /about hero. Edit text here; the components only
 // read from this file.
 
+import { designProjects } from "./designProjects";
+
 export const aboutProfile = {
   name: "Yen-Yi Huang",
   where: "Product designer. New York.",
@@ -62,15 +64,9 @@ export const aboutCv = {
   ],
   awards: [
     {
-      id: "awards-muse",
-      role: "MUSE Design Awards",
+      id: "awards-muse-ny",
+      role: "MUSE & NY Product Design Awards",
       org: "Silver · Product Design, UX / UI / IxD",
-      year: "2025",
-    },
-    {
-      id: "awards-ny",
-      role: "NY Product Design Awards",
-      org: "Silver · Product UX",
       year: "2025",
     },
     {
@@ -133,6 +129,18 @@ export const aboutThumbs = {
   mush4: "/about/thumbs/mush4.jpg",
   mush5: "/about/thumbs/mush5.jpg",
   mush6: "/about/thumbs/mush6.jpg",
+};
+
+// Pages for works in the sheet, keyed by the names used in `works`. Case
+// studies are listed here; design projects pick up their href from
+// designProjects, so a newly linked project shows up here too.
+export const aboutWorkLinks = {
+  "StockNews.AI": "/work/stocknews",
+  "StockNews.AI design system": "/work/design-system",
+  Wondera: "/work/wondera",
+  ...Object.fromEntries(
+    designProjects.filter((p) => p.href).map((p) => [p.title, p.href])
+  ),
 };
 
 // Graph coordinates are in the hero SVG's 1040 × 780 viewBox.
@@ -214,8 +222,7 @@ export const aboutNodes = [
       "devote",
       "snai",
       "wondera",
-      "awards-muse",
-      "awards-ny",
+      "awards-muse-ny",
       "awards-comm",
       "awards-indigo",
       "awards-aida",

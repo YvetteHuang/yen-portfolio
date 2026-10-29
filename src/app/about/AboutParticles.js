@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { INTRO } from "./aboutIntro";
 import { createParticleField } from "./particleField";
 
 const PORTRAIT_SRC = "/about/portrait-density.png";
@@ -27,6 +28,7 @@ export default function AboutParticles({ fieldId }) {
       try {
         const field = createParticleField(canvas, image, {
           reduceMotion: motionQuery.matches,
+          introMs: INTRO.particleMs,
         });
         if (!field) return;
         fieldRef.current = field;

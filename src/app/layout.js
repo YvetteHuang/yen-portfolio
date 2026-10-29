@@ -38,7 +38,11 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${dsFonts.body.variable} ${dsFonts.display.variable} h-full antialiased`}
     >
-      <body className={`${dsFonts.body.className} min-h-full flex flex-col`}>
+      {/* Extensions like Grammarly add attributes to <body> before hydration. */}
+      <body
+        className={`${dsFonts.body.className} min-h-full flex flex-col`}
+        suppressHydrationWarning
+      >
         <Navbar />
         {children}
         <Footer />

@@ -4,6 +4,8 @@
 
 const STEP = 3;
 const MAX_DPR = 2;
+// Particles set off at staggered times across the first 35% of the intro.
+const INTRO_SPREAD = 0.35;
 
 function mulberry32(a) {
   return function () {
@@ -180,7 +182,13 @@ function pattern(id) {
 
 // Returns null if a 2D context isn't available; callers treat that as "no
 // particles" and leave the canvas empty.
-export function createParticleField(canvas, image, { reduceMotion = false } = {}) {
+// introMs > 0 starts every particle at a random spot on the canvas and
+// gathers them into the portrait over that many ms.
+export function createParticleField(
+  canvas,
+  image,
+  { reduceMotion = false, introMs = 0 } = {}
+) {
   const ctx = canvas.getContext("2d");
   if (!ctx) return null;
 
@@ -194,6 +202,8 @@ export function createParticleField(canvas, image, { reduceMotion = false } = {}
   let morphGoal = 0;
   let reduce = reduceMotion;
   let raf = 0;
+  let introStart = null;
+  let introDone = reduceMotion || introMs <= 0;
 
   // Even coverage: particles are ordered by angle around the centre, and each
   // takes the target point at the same fraction through the target list.
@@ -239,6 +249,8 @@ export function createParticleField(canvas, image, { reduceMotion = false } = {}
       const soft = 1 + (1 - p.l / 255) * 0.6; // faint pixels wander more
       return {
         x: p.x, y: p.y, tx: p.x, ty: p.y, ta: 1, l: p.l,
+        // Intro start point, and how far into the intro this one sets off.
+        sx: rnd() * W, sy: rnd() * H, sd: rnd() * INTRO_SPREAD,
         ph: rnd() * Math.PI * 2,
         sp: (0.75 + rnd() * 0.9) / (0.8 + edge * 0.2),
         am: Math.min(9, (1.3 + rnd() * 1.4) * edge * soft),
@@ -251,16 +263,21 @@ export function createParticleField(canvas, image, { reduceMotion = false } = {}
     cache = {};
   }
 
-  function draw(t) {
+  function draw(t, intro = 1) {
     const m = morph < 0.001 ? 0 : morph;
     ctx.clearRect(0, 0, W, H);
     for (let i = 0; i < parts.length; i++) {
       const p = parts[i];
-      const bx = p.x + (p.tx - p.x) * m;
-      const by = p.y + (p.ty - p.y) * m;
+      // Ease-out cubic from the scattered start to the portrait position.
+      const k = intro >= 1 ? 1 : Math.min(1, Math.max(0, (intro - p.sd) / (1 - INTRO_SPREAD)));
+      const e = 1 - Math.pow(1 - k, 3);
+      const px = p.sx + (p.x - p.sx) * e;
+      const py = p.sy + (p.y - p.sy) * e;
+      const bx = px + (p.tx - p.x) * m;
+      const by = py + (p.ty - p.y) * m;
       const dx = reduce ? 0 : Math.sin(t * p.sp + p.ph) * p.am;
       const dy = reduce ? 0 : Math.cos(t * p.sp * 0.83 + p.ph * 1.7) * p.am * 0.8;
-      const fade = 1 - m + m * p.ta;
+      const fade = (1 - m + m * p.ta) * (0.35 + 0.65 * e);
       ctx.fillStyle = `rgba(190,196,214,${((p.l / 255) * (0.3 + m * 0.2) * fade).toFixed(3)})`;
       ctx.fillRect(bx + dx, by + dy, 1.1, 1.1);
     }
@@ -268,7 +285,13 @@ export function createParticleField(canvas, image, { reduceMotion = false } = {}
 
   function frame(ts) {
     morph += (morphGoal - morph) * 0.065;
-    draw(ts / 1000);
+    let intro = 1;
+    if (!introDone) {
+      if (introStart === null) introStart = ts;
+      intro = (ts - introStart) / introMs;
+      if (intro >= 1) introDone = true;
+    }
+    draw(ts / 1000, intro);
     raf = requestAnimationFrame(frame);
   }
 
@@ -302,6 +325,7 @@ export function createParticleField(canvas, image, { reduceMotion = false } = {}
     },
     setReduceMotion(value) {
       reduce = value;
+      if (value) introDone = true;
       if (W && H) start();
     },
     destroy() {

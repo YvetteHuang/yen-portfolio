@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from "react";
 import { dsColors, dsFonts } from "@/lib/designSystem";
 import { aboutEdges, aboutNodes } from "@/lib/aboutHero";
+import { INTRO, introDelay } from "./aboutIntro";
 
 const g = dsColors.about.graph;
 
@@ -26,6 +28,11 @@ const EDGE_KIND = {
   dashed: { strokeDasharray: "3 6" },
   faint: { strokeDasharray: "1 7", opacity: 0.5 },
 };
+
+// Edge width in screen px. The SVG scales with the stage, so the stroke is
+// divided by that scale. (vector-effect: non-scaling-stroke would do this, but
+// in Chrome it breaks the pathLength-based draw-in and leaves gaps.)
+const EDGE_WIDTH_PX = 0.6;
 
 const NODE_MUTE_OPACITY = 0.26;
 const EDGE_MUTE_OPACITY = 0.22;
@@ -83,7 +90,27 @@ function buildEdgePaths() {
 
 const edgePaths = buildEdgePaths();
 
-function GraphEdge({ edge, litId }) {
+// Entrance order: core nodes first, then mid, Mushrooms, and the tool labels;
+// data order within a tier. Edges draw in the order their later endpoint
+// appeared.
+const TIER_ORDER = ["core", "mid", "alone", "leaf"];
+const nodeIntroIndex = Object.fromEntries(
+  [...aboutNodes]
+    .sort((a, b) => TIER_ORDER.indexOf(a.tier) - TIER_ORDER.indexOf(b.tier))
+    .map((n, i) => [n.id, i])
+);
+const edgeIntroRank = Object.fromEntries(
+  [...edgePaths]
+    .sort(
+      (a, b) =>
+        Math.max(nodeIntroIndex[a.from], nodeIntroIndex[a.to]) -
+        Math.max(nodeIntroIndex[b.from], nodeIntroIndex[b.to])
+    )
+    .map((e, i) => [e.key, i])
+);
+const introClass = "motion-reduce:animate-none";
+
+function GraphEdge({ edge, litId, width }) {
   const lit = litId && (edge.from === litId || edge.to === litId);
   const kind = EDGE_KIND[edge.kind] ?? {};
   let stroke = g.lineHex;
@@ -95,15 +122,26 @@ function GraphEdge({ edge, litId }) {
     opacity = EDGE_MUTE_OPACITY;
   }
 
+  // Solid edges draw along their length; dashed ones would lose their dash
+  // pattern that way, so they fade in instead.
+  const solid = !kind.strokeDasharray;
+  const delay = introDelay(INTRO.edgeStart + edgeIntroRank[edge.key] * INTRO.edgeStagger);
+
   return (
-    <path
-      d={edge.d}
-      fill="none"
-      strokeWidth={1}
-      strokeDasharray={kind.strokeDasharray}
-      className={edgeFadeClass}
-      style={{ stroke, opacity }}
-    />
+    <g
+      className={solid ? undefined : `animate-about-fade ${introClass}`}
+      style={solid ? undefined : delay}
+    >
+      <path
+        d={edge.d}
+        fill="none"
+        strokeWidth={width}
+        strokeDasharray={kind.strokeDasharray}
+        pathLength={solid ? 1 : undefined}
+        className={`${edgeFadeClass} ${solid ? `animate-about-draw ${introClass}` : ""}`}
+        style={{ stroke, opacity, ...(solid ? delay : null) }}
+      />
+    </g>
   );
 }
 
@@ -148,59 +186,79 @@ function GraphNode({ node, litId, pinnedId, handlers }) {
 
   return (
     <g
-      data-node={node.id}
-      className={`group outline-none ${interactive ? "cursor-pointer" : "pointer-events-none"} ${fadeClass}`}
-      style={{ opacity: muted ? NODE_MUTE_OPACITY : 1 }}
-      {...interactiveProps}
+      className={`animate-about-rise ${introClass}`}
+      style={introDelay(INTRO.nodeStart + nodeIntroIndex[node.id] * INTRO.nodeStagger)}
     >
-      <circle cx={node.x} cy={node.y} r={HALO_R} fill="transparent" />
-      {interactive ? (
-        <circle
-          cx={node.x}
-          cy={node.y}
-          r={FOCUS_RING_R}
-          fill="none"
-          stroke={g.accentHex}
-          strokeWidth={1.5}
-          className="opacity-0 group-focus-visible:opacity-100"
-        />
-      ) : null}
-      {node.tier === "core" ? (
-        <circle
-          cx={node.x}
-          cy={node.y}
-          r={CORE_RING_R}
-          fill="none"
-          stroke={g.ringHex}
-          strokeWidth={1}
-        />
-      ) : null}
-      <circle
-        cx={node.x}
-        cy={node.y}
-        r={tier.r}
-        strokeWidth={hasPanel ? 0 : 1}
-        className={fadeClass}
-        style={{ fill: dotFill, stroke: dotStroke }}
-      />
-      <text
-        x={node.x + tier.r + LABEL_GAP}
-        y={node.y}
-        textAnchor="start"
-        dominantBaseline="middle"
-        fontSize={tier.fontSize}
-        className={`${tier.fontClass} ${fadeClass}`}
-        style={{ fill: labelFill }}
+      <g
+        data-node={node.id}
+        className={`group outline-none ${interactive ? "cursor-pointer" : "pointer-events-none"} ${fadeClass}`}
+        style={{ opacity: muted ? NODE_MUTE_OPACITY : 1 }}
+        {...interactiveProps}
       >
-        {node.label}
-      </text>
+        <circle cx={node.x} cy={node.y} r={HALO_R} fill="transparent" />
+        {interactive ? (
+          <circle
+            cx={node.x}
+            cy={node.y}
+            r={FOCUS_RING_R}
+            fill="none"
+            stroke={g.accentHex}
+            strokeWidth={1.5}
+            className="opacity-0 group-focus-visible:opacity-100"
+          />
+        ) : null}
+        {node.tier === "core" ? (
+          <circle
+            cx={node.x}
+            cy={node.y}
+            r={CORE_RING_R}
+            fill="none"
+            stroke={g.ringHex}
+            strokeWidth={1}
+          />
+        ) : null}
+        <circle
+          cx={node.x}
+          cy={node.y}
+          r={tier.r}
+          strokeWidth={hasPanel ? 0 : 1}
+          className={fadeClass}
+          style={{ fill: dotFill, stroke: dotStroke }}
+        />
+        <text
+          x={node.x + tier.r + LABEL_GAP}
+          y={node.y}
+          textAnchor="start"
+          dominantBaseline="middle"
+          fontSize={tier.fontSize}
+          className={`${tier.fontClass} ${fadeClass}`}
+          style={{ fill: labelFill }}
+        >
+          {node.label}
+        </text>
+      </g>
     </g>
   );
 }
 
 export default function AboutGraph({ litId, pinnedId, ...handlers }) {
+  const svgRef = useRef(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      if (width && height) setScale(Math.min(width / VIEW_W, height / VIEW_H));
+    });
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <svg
+      ref={svgRef}
       viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
       preserveAspectRatio="xMidYMid meet"
       className="absolute inset-0 h-full w-full overflow-visible"
@@ -243,7 +301,12 @@ export default function AboutGraph({ litId, pinnedId, ...handlers }) {
 
       <g aria-hidden="true">
         {edgePaths.map((edge) => (
-          <GraphEdge key={edge.key} edge={edge} litId={litId} />
+          <GraphEdge
+            key={edge.key}
+            edge={edge}
+            litId={litId}
+            width={EDGE_WIDTH_PX / scale}
+          />
         ))}
       </g>
 

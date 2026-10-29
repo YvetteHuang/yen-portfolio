@@ -1,5 +1,6 @@
 import { dsColors, dsFonts } from "@/lib/designSystem";
 import { aboutCv, aboutProfile } from "@/lib/aboutHero";
+import { INTRO, introDelay } from "./aboutIntro";
 
 const c = dsColors.about;
 
@@ -59,9 +60,18 @@ function CvEntry({ entry, litIds }) {
   );
 }
 
-function CvList({ title, entries, litIds, children }) {
+// Blocks fade in top to bottom: name, education, experience, awards,
+// publications.
+function blockIntro(step) {
+  return {
+    className: "animate-about-fade motion-reduce:animate-none",
+    style: introDelay(INTRO.cvStart + step * INTRO.cvStagger),
+  };
+}
+
+function CvList({ title, entries, litIds, step, children }) {
   return (
-    <section>
+    <section {...blockIntro(step)}>
       <SectionHeading>{title}</SectionHeading>
       <ul>
         {entries.map((entry) => (
@@ -76,7 +86,7 @@ function CvList({ title, entries, litIds, children }) {
 export default function AboutCv({ litIds }) {
   return (
     <aside className={columnClass}>
-      <div>
+      <div {...blockIntro(0)}>
         <h1
           className={`${dsFonts.display.className} mb-[0.3em] text-[3.05em] font-normal leading-[1.03] tracking-[-0.01em]`}
         >
@@ -85,15 +95,15 @@ export default function AboutCv({ litIds }) {
         <p className={`text-[1.02em] ${c.dimText}`}>{aboutProfile.where}</p>
       </div>
 
-      <CvList title="EDUCATION" entries={aboutCv.education} litIds={litIds} />
-      <CvList title="EXPERIENCE" entries={aboutCv.experience} litIds={litIds} />
-      <CvList title="AWARDS" entries={aboutCv.awards} litIds={litIds}>
+      <CvList title="EDUCATION" entries={aboutCv.education} litIds={litIds} step={1} />
+      <CvList title="EXPERIENCE" entries={aboutCv.experience} litIds={litIds} step={2} />
+      <CvList title="AWARDS" entries={aboutCv.awards} litIds={litIds} step={3}>
         <p className={`ml-[9px] mt-[0.2em] text-[0.86em] italic ${c.faintText}`}>
           {aboutCv.awardsNote}
         </p>
       </CvList>
 
-      <section>
+      <section {...blockIntro(4)}>
         <SectionHeading>PUBLICATIONS</SectionHeading>
         {aboutCv.publications.map((pub) => {
           const { lit, className } = entryClass(pub.id, litIds);

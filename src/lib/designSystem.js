@@ -173,7 +173,8 @@ export const dsColors = {
     flowTextHex: "#2A1146",
   },
   about: {
-    groundBackground: "bg-[#08080A]",
+    // Pure black like the rest of the site, so it meets the footer seamlessly.
+    groundBackground: "bg-black",
     inkText: "text-[#E8E8EC]",
     dimText: "text-[#71717C]",
     faintText: "text-[#44444D]",
@@ -193,6 +194,10 @@ export const dsColors = {
       "border border-white/[0.11] bg-white/[0.055] backdrop-blur-[16px] backdrop-saturate-[1.25]",
     glassSheet:
       "border border-white/[0.12] bg-white/[0.055] backdrop-blur-[22px] backdrop-saturate-[1.3]",
+    // Thin, faint scrollbar for the glass sheet. Firefox and current Chrome
+    // use the standard properties; the -webkit rules cover older Safari.
+    thinScrollbar:
+      "[scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.16)_transparent] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-[2px] [&::-webkit-scrollbar-thumb]:bg-white/[0.16] [&::-webkit-scrollbar-track]:bg-transparent",
     // Hex values for SVG attributes in the hero graph.
     graph: {
       inkHex: "#E8E8EC",

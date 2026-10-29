@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { dsColors, dsFonts } from "@/lib/designSystem";
-import { aboutThumbs } from "@/lib/aboutHero";
+import TrackedLink from "@/components/TrackedLink";
+import { aboutThumbs, aboutWorkLinks } from "@/lib/aboutHero";
 
 const c = dsColors.about;
 
@@ -67,7 +68,7 @@ export default function AboutSheet({ node, onClose }) {
       inert={!open}
       onClick={(event) => event.stopPropagation()}
       onKeyDown={onKeyDown}
-      className={`absolute right-[34px] top-1/2 max-h-[76%] w-[392px] overflow-y-auto rounded-[3px] pt-6 pr-[26px] pb-[22px] pl-[26px] outline-none ${c.glassSheet} transition-[opacity,transform] duration-[220ms] motion-reduce:transition-none ${
+      className={`absolute right-[34px] top-1/2 max-h-[76%] w-[392px] overflow-y-auto rounded-[3px] pt-6 pr-[26px] pb-[22px] pl-[26px] outline-none ${c.glassSheet} ${c.thinScrollbar} transition-[opacity,transform] duration-[220ms] motion-reduce:transition-none ${
         open
           ? "pointer-events-auto -translate-y-1/2 scale-100 opacity-100"
           : "pointer-events-none -translate-y-[46%] scale-[0.98] opacity-0"
@@ -118,19 +119,38 @@ export default function AboutSheet({ node, onClose }) {
                 WORK
               </p>
               <ul className="mb-4 grid grid-cols-2 gap-2.5">
-                {shown.works.map((work) => (
-                  <li key={work} className="group">
-                    <Thumb
-                      src={aboutThumbs[shown.workImages?.[work] ?? work]}
-                      className="mb-1.5"
-                    />
-                    <span
-                      className={`text-[11px] leading-[1.35] ${c.dimText} ${c.accentGroupHoverText}`}
-                    >
-                      {work}
-                    </span>
-                  </li>
-                ))}
+                {shown.works.map((work) => {
+                  const href = aboutWorkLinks[work];
+                  const content = (
+                    <>
+                      <Thumb
+                        src={aboutThumbs[shown.workImages?.[work] ?? work]}
+                        className="mb-1.5"
+                      />
+                      <span
+                        className={`text-[11px] leading-[1.35] ${c.dimText} ${href ? c.accentGroupHoverText : ""}`}
+                      >
+                        {work}
+                      </span>
+                    </>
+                  );
+                  return (
+                    <li key={work} className="group">
+                      {href ? (
+                        <TrackedLink
+                          href={href}
+                          title={work}
+                          location="about"
+                          className={`block rounded-[2px] outline-offset-4 ${c.accentFocusOutline}`}
+                        >
+                          {content}
+                        </TrackedLink>
+                      ) : (
+                        content
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </>
           ) : null}
