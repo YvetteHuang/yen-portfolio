@@ -194,6 +194,9 @@ export const dsColors = {
       "border border-white/[0.11] bg-white/[0.055] backdrop-blur-[16px] backdrop-saturate-[1.25]",
     glassSheet:
       "border border-white/[0.12] bg-white/[0.055] backdrop-blur-[22px] backdrop-saturate-[1.3]",
+    // Mobile bottom sheet: nearly opaque, since it slides over the whole page.
+    sheetBottom:
+      "border-t border-white/[0.12] bg-[#0D0D11]/95 backdrop-blur-[22px] backdrop-saturate-[1.3]",
     // Thin, faint scrollbar for the glass sheet. Firefox and current Chrome
     // use the standard properties; the -webkit rules cover older Safari.
     thinScrollbar:

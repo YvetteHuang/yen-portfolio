@@ -1,15 +1,22 @@
 import { dsColors, dsFonts } from "@/lib/designSystem";
 import { aboutCv, aboutProfile } from "@/lib/aboutHero";
-import { INTRO, introDelay } from "./aboutIntro";
+import { INTRO } from "./aboutIntro";
 
 const c = dsColors.about;
 
-// Everything inside, padding included, is sized in em off one font size, so the
-// column scales as a whole. Content plus padding runs about 74em tall; dividing
-// the height left under the fixed navbar (5.25rem) by 76em keeps it from
-// scrolling with a little slack for the gaps between sections. Adding CV
-// entries means raising the divisor.
-const columnClass = `flex h-full w-[332px] shrink-0 flex-col justify-between overflow-hidden border-r ${c.lineBorder} pt-[calc(5.25rem+1.6em)] pr-7 pb-[1.4em] pl-10 text-[clamp(8px,calc((100svh-5.25rem)/76),12.4px)] leading-normal`;
+// Below 1024px the CV is an ordinary block at the top of the page, above the
+// map tour.
+const mobileColumnClass =
+  "flex w-full flex-col gap-10 px-6 pt-[calc(5.25rem+2rem)] pb-14 text-[14px] leading-normal min-[720px]:px-12 min-[720px]:text-[15px]";
+
+// On desktop everything inside, padding included, is sized in em off one font
+// size, so the column scales as a whole. Content plus padding runs about 74em
+// tall; dividing the height left under the fixed navbar (5.25rem) by 76em
+// keeps it from scrolling with a little slack for the gaps between sections.
+// Adding CV entries means raising the divisor.
+const desktopColumnClass = `min-[1024px]:h-full min-[1024px]:w-[332px] min-[1024px]:shrink-0 min-[1024px]:justify-between min-[1024px]:gap-0 min-[1024px]:overflow-hidden min-[1024px]:border-r ${c.lineBorder} min-[1024px]:pt-[calc(5.25rem+1.6em)] min-[1024px]:pr-7 min-[1024px]:pb-[1.4em] min-[1024px]:pl-10 min-[1024px]:text-[clamp(8px,calc((100svh-5.25rem)/76),12.4px)]`;
+
+const columnClass = `${mobileColumnClass} ${desktopColumnClass}`;
 
 // While a graph node is lit, its CV entries get an accent rule and the rest
 // dim. Nodes with no CV entries leave the column as is.
@@ -61,11 +68,16 @@ function CvEntry({ entry, litIds }) {
 }
 
 // Blocks fade in top to bottom: name, education, experience, awards,
-// publications.
+// publications. The delay differs by breakpoint, so it goes through CSS
+// variables.
 function blockIntro(step) {
   return {
-    className: "animate-about-fade motion-reduce:animate-none",
-    style: introDelay(INTRO.cvStart + step * INTRO.cvStagger),
+    className:
+      "animate-about-fade [animation-delay:var(--intro-mobile)] min-[1024px]:[animation-delay:var(--intro-desktop)] motion-reduce:animate-none",
+    style: {
+      "--intro-mobile": `${INTRO.cvStartMobile + step * INTRO.cvStaggerMobile}ms`,
+      "--intro-desktop": `${INTRO.cvStart + step * INTRO.cvStagger}ms`,
+    },
   };
 }
 

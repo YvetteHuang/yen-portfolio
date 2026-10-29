@@ -8,6 +8,9 @@ export const INTRO = {
   edgeStagger: 50,
   cvStart: 1700,
   cvStagger: 160,
+  // On mobile the CV is the first thing on screen, so it doesn't wait.
+  cvStartMobile: 100,
+  cvStaggerMobile: 120,
   particleMs: 2600,
 };
 

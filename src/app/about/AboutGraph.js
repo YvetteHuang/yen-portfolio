@@ -110,13 +110,13 @@ const edgeIntroRank = Object.fromEntries(
 );
 const introClass = "motion-reduce:animate-none";
 
-function GraphEdge({ edge, litId, width }) {
+function GraphEdge({ edge, litId, width, metalId }) {
   const lit = litId && (edge.from === litId || edge.to === litId);
   const kind = EDGE_KIND[edge.kind] ?? {};
   let stroke = g.lineHex;
   let opacity = kind.opacity ?? 1;
   if (lit) {
-    stroke = edge.kind === "faint" ? g.accentAltHex : "url(#about-metal)";
+    stroke = edge.kind === "faint" ? g.accentAltHex : `url(#${metalId})`;
     opacity = 1;
   } else if (litId) {
     opacity = EDGE_MUTE_OPACITY;
@@ -145,11 +145,11 @@ function GraphEdge({ edge, litId, width }) {
   );
 }
 
-function GraphNode({ node, litId, pinnedId, handlers }) {
+function GraphNode({ node, litId, pinnedId, handlers, interactiveGraph }) {
   const tier = TIER[node.tier];
   const hasPanel = Boolean(node.hover);
   // Leaf nodes are tool labels: no hover, no focus, no sheet.
-  const interactive = node.tier !== "leaf";
+  const interactive = interactiveGraph && node.tier !== "leaf";
   const lit = node.id === litId;
   const muted = litId && !lit && !neighbors[litId].has(node.id);
 
@@ -241,7 +241,20 @@ function GraphNode({ node, litId, pinnedId, handlers }) {
   );
 }
 
-export default function AboutGraph({ litId, pinnedId, ...handlers }) {
+// camera: { x, y, zoom } in viewBox units, applied as translate(x, y)
+// scale(zoom); omitted on desktop, where the whole map is shown. With
+// animateCamera off (while dragging the explore map), the camera follows the
+// finger instead of easing. With interactive off (the mobile tour), nodes are display only and the SVG is
+// hidden from assistive tech, since the tour card carries the content.
+export default function AboutGraph({
+  litId,
+  pinnedId,
+  camera,
+  animateCamera = true,
+  interactive = true,
+  idPrefix = "about",
+  ...handlers
+}) {
   const svgRef = useRef(null);
   const [scale, setScale] = useState(1);
 
@@ -261,14 +274,19 @@ export default function AboutGraph({ litId, pinnedId, ...handlers }) {
       ref={svgRef}
       viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
       preserveAspectRatio="xMidYMid meet"
-      className="absolute inset-0 h-full w-full overflow-visible"
-      role="group"
-      aria-label="How architecture, HCI, generative design, interaction design, fabrication, XR, design systems and product design connect"
+      className={`absolute inset-0 h-full w-full overflow-visible ${interactive ? "" : "pointer-events-none"}`}
+      {...(interactive
+        ? {
+            role: "group",
+            "aria-label":
+              "How architecture, HCI, generative design, interaction design, fabrication, XR, design systems and product design connect",
+          }
+        : { "aria-hidden": true })}
     >
       <defs>
         {/* Darker, lighter and shadow tints of the brand blue, for a metallic sheen on lit edges. */}
         <linearGradient
-          id="about-metal"
+          id={`${idPrefix}-metal`}
           gradientUnits="userSpaceOnUse"
           x1="60"
           y1="40"
@@ -284,7 +302,7 @@ export default function AboutGraph({ litId, pinnedId, ...handlers }) {
           <stop offset="1" stopColor={g.accentHex} />
         </linearGradient>
         <linearGradient
-          id="about-metal-text"
+          id={`${idPrefix}-metal-text`}
           gradientUnits="userSpaceOnUse"
           x1="60"
           y1="40"
@@ -299,27 +317,42 @@ export default function AboutGraph({ litId, pinnedId, ...handlers }) {
         </linearGradient>
       </defs>
 
-      <g aria-hidden="true">
-        {edgePaths.map((edge) => (
-          <GraphEdge
-            key={edge.key}
-            edge={edge}
-            litId={litId}
-            width={EDGE_WIDTH_PX / scale}
-          />
-        ))}
-      </g>
+      <g
+        className={
+          animateCamera
+            ? "transition-transform duration-[700ms] ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none"
+            : undefined
+        }
+        style={
+          camera
+            ? { transform: `translate(${camera.x}px, ${camera.y}px) scale(${camera.zoom})` }
+            : undefined
+        }
+      >
+        <g aria-hidden="true">
+          {edgePaths.map((edge) => (
+            <GraphEdge
+              key={edge.key}
+              edge={edge}
+              litId={litId}
+              metalId={`${idPrefix}-metal`}
+              width={EDGE_WIDTH_PX / (scale * (camera?.zoom ?? 1))}
+            />
+          ))}
+        </g>
 
-      <g>
-        {aboutNodes.map((node) => (
-          <GraphNode
-            key={node.id}
-            node={node}
-            litId={litId}
-            pinnedId={pinnedId}
-            handlers={handlers}
-          />
-        ))}
+        <g>
+          {aboutNodes.map((node) => (
+            <GraphNode
+              key={node.id}
+              node={node}
+              litId={litId}
+              pinnedId={pinnedId}
+              handlers={handlers}
+              interactiveGraph={interactive}
+            />
+          ))}
+        </g>
       </g>
     </svg>
   );

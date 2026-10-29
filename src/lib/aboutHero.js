@@ -84,18 +84,23 @@ export const aboutCv = {
     { id: "awards-aida", role: "AI Design Award", org: "Winner", year: "2025" },
   ],
   awardsNote: "all for StockNews.AI",
-  // `self` is rendered bold between `lead` and `rest`.
+  // `self` is rendered bold between `lead` and `rest`. `short` and `year` are
+  // the one-line version used on the mobile map cards.
   publications: [
     {
       id: "pub-intu",
       lead: "Cho, Y-T., Kuo, Y-L., Yeh, Y-T., ",
       self: "Huang, Y-Y.",
+      short: "IntuModels, ACM Creativity & Cognition",
+      year: "2021",
       rest: ", Huang, P-L. (2021). IntuModels: Enabling Interactive Modeling for the Novice through Idea Generation and Selection. ACM Creativity & Cognition.",
     },
     {
       id: "pub-2018",
       lead: "",
       self: "黃燕怡",
+      short: "設計思考的再生, 臺灣建築學會",
+      year: "2018",
       rest: ", 簡聖芬 (2018). 設計思考的再生：數位工具結合傳統設計模式的探索. 臺灣建築學會第三十屆第一次建築研究成果發表會.",
     },
   ],
@@ -336,6 +341,27 @@ export const aboutNodes = [
     cv: [],
   },
 ];
+
+// On mobile the map is a scroll-driven tour: each scroll step moves the camera
+// to the next node in this order, then it zooms out to the whole map.
+export const aboutTourOrder = [
+  "arch",
+  "gen",
+  "fab",
+  "ixd",
+  "hci",
+  "xr",
+  "ds",
+  "pd",
+  "mush",
+];
+
+// Card for the last tour step, when the camera pulls back to the whole map.
+export const aboutTour = {
+  outroTitle: "The whole map",
+  outroText:
+    "Architecture and HCI at the roots, generative design at the centre, product design where it all leads. And mushrooms, off to one side.",
+};
 
 // kind: "dashed" | "faint" (optional)
 // control: fixed quadratic control point; otherwise the curve bows from the midpoint
