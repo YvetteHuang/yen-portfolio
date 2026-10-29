@@ -22,7 +22,22 @@ function Thumb({ src, className = "" }) {
   );
 }
 
-export default function AboutSheet({ node, onClose }) {
+// Desktop: a glass card at the right of the stage. Mobile: a bottom sheet over
+// the tour, with its own id so both can be on the page.
+const PLACEMENT = {
+  side: {
+    base: `absolute right-[34px] top-1/2 max-h-[76%] w-[392px] rounded-[3px] ${c.glassSheet}`,
+    open: "-translate-y-1/2 scale-100 opacity-100",
+    closed: "-translate-y-[46%] scale-[0.98] opacity-0",
+  },
+  bottom: {
+    base: `fixed inset-x-0 bottom-0 z-[60] max-h-[85svh] w-full overscroll-contain rounded-t-[10px] pb-[max(22px,env(safe-area-inset-bottom))] ${c.sheetBottom}`,
+    open: "translate-y-0 opacity-100",
+    closed: "translate-y-full opacity-0",
+  },
+};
+
+export default function AboutSheet({ node, onClose, id = "about-sheet", placement = "side" }) {
   const sheetRef = useRef(null);
   // Keep the last node's content so the sheet fades out with it.
   const [shown, setShown] = useState(null);
@@ -55,23 +70,22 @@ export default function AboutSheet({ node, onClose }) {
     }
   };
 
+  const place = PLACEMENT[placement];
   const paragraphs = shown ? (shown.expanded ?? [shown.hover]) : [];
 
   return (
     <div
-      id="about-sheet"
+      id={id}
       ref={sheetRef}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="about-sheet-title"
+      aria-labelledby={`${id}-title`}
       tabIndex={-1}
       inert={!open}
       onClick={(event) => event.stopPropagation()}
       onKeyDown={onKeyDown}
-      className={`absolute right-[34px] top-1/2 max-h-[76%] w-[392px] overflow-y-auto rounded-[3px] pt-6 pr-[26px] pb-[22px] pl-[26px] outline-none ${c.glassSheet} ${c.thinScrollbar} transition-[opacity,transform] duration-[220ms] motion-reduce:transition-none ${
-        open
-          ? "pointer-events-auto -translate-y-1/2 scale-100 opacity-100"
-          : "pointer-events-none -translate-y-[46%] scale-[0.98] opacity-0"
+      className={`overflow-y-auto pt-6 pr-[26px] pb-[22px] pl-[26px] outline-none ${place.base} ${c.thinScrollbar} transition-[opacity,transform] duration-[220ms] motion-reduce:transition-none ${
+        open ? `pointer-events-auto ${place.open}` : `pointer-events-none ${place.closed}`
       }`}
     >
       {shown ? (
@@ -86,7 +100,7 @@ export default function AboutSheet({ node, onClose }) {
           </button>
 
           <h3
-            id="about-sheet-title"
+            id={`${id}-title`}
             className={`${dsFonts.display.className} mb-3 text-2xl font-normal`}
           >
             {shown.label}
