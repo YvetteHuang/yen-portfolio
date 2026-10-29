@@ -548,8 +548,8 @@ export default function DesignSystemCaseStudy() {
             <blockquote
               className={`${dsFonts.display.className} ${dsType.quote} ${dsLayout.caseStudyContentMax}`}
             >
-              "A design system isn&apos;t a deliverable. It&apos;s an ongoing
-              conversation between design intent and engineering reality"
+              &ldquo;A design system isn&rsquo;t a deliverable. It&rsquo;s an ongoing
+              conversation between design intent and engineering reality&rdquo;
             </blockquote>
           </header>
 
