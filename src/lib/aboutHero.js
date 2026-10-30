@@ -143,6 +143,7 @@ export const aboutWorkLinks = {
   "StockNews.AI": "/work/stocknews",
   "StockNews.AI design system": "/work/design-system",
   Wondera: "/work/wondera",
+  Gizmu: "/work/gizmu",
   ...Object.fromEntries(
     designProjects.filter((p) => p.href).map((p) => [p.title, p.href])
   ),
