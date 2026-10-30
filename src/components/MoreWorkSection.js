@@ -12,6 +12,7 @@ const moreWorkProjects = [
       "AR interaction game that turns everyday objects into music",
     imageSrc: "/homepage_gizmu.png",
     imageAlt: "Gizmu AR mobile game mockup",
+    href: "/work/gizmu",
     mediaClassName:
       "bg-[linear-gradient(134.5deg,#D37DB8_12%,#7A4A7C_45%,#2B2145_92%)]",
     imageClassName: "object-contain p-2",
@@ -93,7 +94,13 @@ export default function MoreWorkSection() {
     const el = scrollerRef.current;
     if (!el) return;
 
+    // Pixels a press must travel before it counts as a drag, so a plain
+    // click still opens a linked card.
+    const DRAG_THRESHOLD = 5;
+
+    let isPointerDown = false;
     let isDragging = false;
+    let didDrag = false;
     let startX = 0;
     let startScrollLeft = 0;
     let pointerId = null;
@@ -102,22 +109,29 @@ export default function MoreWorkSection() {
       if (event.pointerType === "touch") return;
       if (!canScrollHorizontally(el)) return;
 
-      isDragging = true;
+      isPointerDown = true;
+      didDrag = false;
       pointerId = event.pointerId;
       startX = event.clientX;
       startScrollLeft = el.scrollLeft;
-      el.setPointerCapture(event.pointerId);
-      el.classList.add("cursor-grabbing");
     };
 
     const onPointerMove = (event) => {
-      if (!isDragging || event.pointerId !== pointerId) return;
+      if (!isPointerDown || event.pointerId !== pointerId) return;
       const delta = event.clientX - startX;
+      if (!isDragging) {
+        if (Math.abs(delta) < DRAG_THRESHOLD) return;
+        isDragging = true;
+        didDrag = true;
+        el.setPointerCapture(event.pointerId);
+        el.classList.add("cursor-grabbing");
+      }
       el.scrollLeft = startScrollLeft - delta;
     };
 
     const endDrag = (event) => {
-      if (!isDragging || event.pointerId !== pointerId) return;
+      if (!isPointerDown || event.pointerId !== pointerId) return;
+      isPointerDown = false;
       isDragging = false;
       pointerId = null;
       el.classList.remove("cursor-grabbing");
@@ -126,16 +140,31 @@ export default function MoreWorkSection() {
       }
     };
 
+    // A drag that ends over a card shouldn't open it.
+    const onClickCapture = (event) => {
+      if (!didDrag) return;
+      didDrag = false;
+      event.preventDefault();
+      event.stopPropagation();
+    };
+
+    // Links are natively draggable, which would cancel the scroll drag.
+    const onDragStart = (event) => event.preventDefault();
+
     el.addEventListener("pointerdown", onPointerDown);
     el.addEventListener("pointermove", onPointerMove);
     el.addEventListener("pointerup", endDrag);
     el.addEventListener("pointercancel", endDrag);
+    el.addEventListener("click", onClickCapture, true);
+    el.addEventListener("dragstart", onDragStart);
 
     return () => {
       el.removeEventListener("pointerdown", onPointerDown);
       el.removeEventListener("pointermove", onPointerMove);
       el.removeEventListener("pointerup", endDrag);
       el.removeEventListener("pointercancel", endDrag);
+      el.removeEventListener("click", onClickCapture, true);
+      el.removeEventListener("dragstart", onDragStart);
     };
   }, []);
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Tag from "@/components/Tag";
+import TrackedLink from "@/components/TrackedLink";
 import { dsFonts } from "@/lib/designSystem";
 
 /**
@@ -13,6 +14,7 @@ import { dsFonts } from "@/lib/designSystem";
  * @param {string} props.imageAlt
  * @param {string} [props.imageClassName]
  * @param {string} [props.mediaClassName] - Gradient / fill behind the thumbnail
+ * @param {string} [props.href] - If set, entire card is wrapped in a link
  */
 export default function MoreWorkCard({
   title,
@@ -22,8 +24,9 @@ export default function MoreWorkCard({
   imageAlt,
   imageClassName = "object-contain",
   mediaClassName = "bg-zinc-800",
+  href,
 }) {
-  return (
+  const card = (
     <article className="glass-edge flex w-[20.8125rem] shrink-0 flex-col overflow-hidden rounded-[20px] bg-white/10 shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.12)] backdrop-blur-md">
       <div
         className={`relative mx-3.5 mt-[15px] h-[16.8125rem] overflow-hidden rounded-[15px] ${mediaClassName}`}
@@ -61,4 +64,18 @@ export default function MoreWorkCard({
       </div>
     </article>
   );
+
+  if (href) {
+    return (
+      <TrackedLink
+        href={href}
+        title={title}
+        className="block shrink-0 rounded-[20px] outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      >
+        {card}
+      </TrackedLink>
+    );
+  }
+
+  return card;
 }
